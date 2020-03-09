@@ -9,7 +9,13 @@
 		<item key="SmartImportRootWizardPage.STORE_NESTED_PROJECTS" value="true"/>
 		<item key="SmartImportRootWizardPage.STORE_CONFIGURE_NATURES" value="true"/>
 		<list key="org.eclipse.ui.internal.wizards.datatransfer.SmartImportRootWizardPage.knownSources">
+			<item value="C:\Users\Jan de Brandweerman\Downloads\stm32_pwm_1\STM32_PWM_1"/>
 			<item value="C:\SOFTWARE\Development_board_V0"/>
 		</list>
+	</section>
+	<section name="NewWizardAction">
+	</section>
+	<section name="org.eclipse.ui.internal.ide.dialogs.ProjectContentsLocationArea">
+		<item key="OUTSIDE_LOCATION" value="C:\Users\Jan de Brandweerman\Downloads\stm32_pwm_1\STM32_PWM_1"/>
 	</section>
 </section>
