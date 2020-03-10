@@ -3,8 +3,10 @@ stm32f1xx_hal_msp.c:92:6:HAL_ADC_MspInit	48	static
 stm32f1xx_hal_msp.c:138:6:HAL_ADC_MspDeInit	16	static
 stm32f1xx_hal_msp.c:177:6:HAL_I2C_MspInit	48	static
 stm32f1xx_hal_msp.c:233:6:HAL_I2C_MspDeInit	16	static
-stm32f1xx_hal_msp.c:280:6:HAL_TIM_Base_MspInit	24	static
-stm32f1xx_hal_msp.c:302:6:HAL_TIM_PWM_MspInit	24	static
-stm32f1xx_hal_msp.c:318:6:HAL_TIM_MspPostInit	48	static
-stm32f1xx_hal_msp.c:378:6:HAL_TIM_Base_MspDeInit	16	static
-stm32f1xx_hal_msp.c:400:6:HAL_TIM_PWM_MspDeInit	16	static
+stm32f1xx_hal_msp.c:280:6:HAL_RTC_MspInit	24	static
+stm32f1xx_hal_msp.c:305:6:HAL_RTC_MspDeInit	16	static
+stm32f1xx_hal_msp.c:327:6:HAL_TIM_Base_MspInit	24	static
+stm32f1xx_hal_msp.c:349:6:HAL_TIM_PWM_MspInit	24	static
+stm32f1xx_hal_msp.c:365:6:HAL_TIM_MspPostInit	48	static
+stm32f1xx_hal_msp.c:425:6:HAL_TIM_Base_MspDeInit	16	static
+stm32f1xx_hal_msp.c:447:6:HAL_TIM_PWM_MspDeInit	16	static
