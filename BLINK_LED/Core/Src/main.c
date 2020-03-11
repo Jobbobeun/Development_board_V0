@@ -90,8 +90,7 @@ int main(void)
   HAL_Init();
 
   /* USER CODE BEGIN Init */
-//  HAL_TIM_PWM_Start(&htim1, TIM_CHANNEL_1);
-// __HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_1, 2000);
+
 
 
 // TIM1->CCR1 = 60000;
@@ -113,6 +112,12 @@ int main(void)
   MX_RTC_Init();
   MX_TIM2_Init();
   /* USER CODE BEGIN 2 */
+HAL_TIM_PWM_Start(&htim1, TIM_CHANNEL_1);
+HAL_TIM_PWM_Start(&htim1, TIM_CHANNEL_2);
+HAL_TIM_PWM_Start(&htim1, TIM_CHANNEL_3);
+TIM1->CCR1 = 0;
+TIM1->CCR2 = 65535;
+TIM1->CCR3 = 65535;
 
   /* USER CODE END 2 */
 
@@ -121,7 +126,18 @@ int main(void)
   while (1)
   {
     /* USER CODE END WHILE */
+<<<<<<< HEAD
 	  Application();
+=======
+for (int i = 0; i<65535; i+=100){
+	TIM1->CCR1 = i;
+	HAL_Delay(1);
+}
+for (int i = 65535; i>0; i-=100){
+	TIM1->CCR1 = i;
+	HAL_Delay(1);
+}
+>>>>>>> 761755c3f7fc40dfde3015023c0b1ea1629d60ff
     /* USER CODE BEGIN 3 */
   }
   /* USER CODE END 3 */
@@ -164,8 +180,12 @@ void SystemClock_Config(void)
   {
     Error_Handler();
   }
+<<<<<<< HEAD
   PeriphClkInit.PeriphClockSelection = RCC_PERIPHCLK_RTC|RCC_PERIPHCLK_ADC;
   PeriphClkInit.RTCClockSelection = RCC_RTCCLKSOURCE_LSE;
+=======
+  PeriphClkInit.PeriphClockSelection = RCC_PERIPHCLK_ADC;
+>>>>>>> 761755c3f7fc40dfde3015023c0b1ea1629d60ff
   PeriphClkInit.AdcClockSelection = RCC_ADCPCLK2_DIV6;
   if (HAL_RCCEx_PeriphCLKConfig(&PeriphClkInit) != HAL_OK)
   {
@@ -337,9 +357,9 @@ static void MX_TIM1_Init(void)
 
   /* USER CODE END TIM1_Init 1 */
   htim1.Instance = TIM1;
-  htim1.Init.Prescaler = 3200;
+  htim1.Init.Prescaler = 0;
   htim1.Init.CounterMode = TIM_COUNTERMODE_UP;
-  htim1.Init.Period = 1000;
+  htim1.Init.Period = 65535;
   htim1.Init.ClockDivision = TIM_CLOCKDIVISION_DIV1;
   htim1.Init.RepetitionCounter = 0;
   htim1.Init.AutoReloadPreload = TIM_AUTORELOAD_PRELOAD_DISABLE;
