@@ -1,4 +1,3 @@
-# ignore all logs
 *.log
 *.o
 *.ini
