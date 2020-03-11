@@ -1,22 +1,10 @@
-<<<<<<< HEAD
 main.c:81:5:main	8	static
-main.c:134:6:SystemClock_Config	88	static
-main.c:181:13:MX_ADC1_Init	24	static
-main.c:226:13:MX_I2C1_Init	8	static
-main.c:260:13:MX_I2C2_Init	8	static
-main.c:294:13:MX_RTC_Init	8	static
-main.c:324:13:MX_TIM1_Init	96	static
-main.c:411:13:MX_TIM2_Init	48	static
-main.c:464:13:MX_GPIO_Init	40	static
-main.c:519:6:Error_Handler	4	static
-=======
-main.c:77:5:main	16	static
-main.c:142:6:SystemClock_Config	88	static
-main.c:187:13:MX_ADC1_Init	24	static
-main.c:232:13:MX_I2C1_Init	8	static
-main.c:266:13:MX_I2C2_Init	8	static
-main.c:300:13:MX_TIM1_Init	96	static
-main.c:387:13:MX_TIM2_Init	48	static
-main.c:440:13:MX_GPIO_Init	40	static
-main.c:495:6:Error_Handler	4	static
->>>>>>> 761755c3f7fc40dfde3015023c0b1ea1629d60ff
+main.c:141:6:SystemClock_Config	88	static
+main.c:192:13:MX_ADC1_Init	24	static
+main.c:237:13:MX_I2C1_Init	8	static
+main.c:271:13:MX_I2C2_Init	8	static
+main.c:305:13:MX_RTC_Init	8	static
+main.c:335:13:MX_TIM1_Init	96	static
+main.c:422:13:MX_TIM2_Init	48	static
+main.c:475:13:MX_GPIO_Init	40	static
+main.c:530:6:Error_Handler	4	static

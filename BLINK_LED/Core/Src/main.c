@@ -126,18 +126,9 @@ TIM1->CCR3 = 65535;
   while (1)
   {
     /* USER CODE END WHILE */
-<<<<<<< HEAD
+
 	  Application();
-=======
-for (int i = 0; i<65535; i+=100){
-	TIM1->CCR1 = i;
-	HAL_Delay(1);
-}
-for (int i = 65535; i>0; i-=100){
-	TIM1->CCR1 = i;
-	HAL_Delay(1);
-}
->>>>>>> 761755c3f7fc40dfde3015023c0b1ea1629d60ff
+
     /* USER CODE BEGIN 3 */
   }
   /* USER CODE END 3 */
@@ -180,12 +171,12 @@ void SystemClock_Config(void)
   {
     Error_Handler();
   }
-<<<<<<< HEAD
+
   PeriphClkInit.PeriphClockSelection = RCC_PERIPHCLK_RTC|RCC_PERIPHCLK_ADC;
   PeriphClkInit.RTCClockSelection = RCC_RTCCLKSOURCE_LSE;
-=======
+
   PeriphClkInit.PeriphClockSelection = RCC_PERIPHCLK_ADC;
->>>>>>> 761755c3f7fc40dfde3015023c0b1ea1629d60ff
+
   PeriphClkInit.AdcClockSelection = RCC_ADCPCLK2_DIV6;
   if (HAL_RCCEx_PeriphCLKConfig(&PeriphClkInit) != HAL_OK)
   {

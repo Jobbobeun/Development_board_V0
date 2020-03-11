@@ -27,7 +27,8 @@ Core/Src/application.o: ../Core/Src/application.c \
  ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_rtc.h \
  ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_rtc_ex.h \
  ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim.h \
- ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim_ex.h
+ ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim_ex.h \
+ ../Core/Inc/main.h
 
 ../Core/Inc/application.h:
 
@@ -86,3 +87,5 @@ Core/Src/application.o: ../Core/Src/application.c \
 ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim.h:
 
 ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim_ex.h:
+
+../Core/Inc/main.h:
