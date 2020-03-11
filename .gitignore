@@ -8,3 +8,10 @@
 *.xml
 *.xmi
 *.launch
+*.d
+*.su
+*.bin
+*.elf
+*.list
+*.map
+*.mk
