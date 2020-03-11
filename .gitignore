@@ -1,0 +1,11 @@
+# ignore all logs
+*.log
+*.o
+*.ini
+*.pdom
+*.snap
+*.index
+*.prefs
+*.xml
+*.xmi
+*.launch

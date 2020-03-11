@@ -9,7 +9,7 @@
 #include "stm32f1xx_hal.h"
 #include "main.h"
 
-void Application()
+void Application(void)
 {
 	HAL_GPIO_TogglePin(GPIOB, GPIO_PIN_9);
 	HAL_Delay(2000);
