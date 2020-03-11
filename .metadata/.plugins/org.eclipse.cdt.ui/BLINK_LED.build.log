@@ -1,21 +1,20 @@
-15:09:25 **** Incremental Build of configuration Debug for project BLINK_LED ****
+10:34:50 **** Incremental Build of configuration Debug for project BLINK_LED ****
 make -j4 all 
 arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DUSE_HAL_DRIVER -DSTM32F103xB -DDEBUG -c -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -I../Core/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Drivers/STM32F1xx_HAL_Driver/Inc -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/main.o"
-../Core/Src/main.c: In function 'main':
-../Core/Src/main.c:118:7: warning: unused variable 'pwm' [-Wunused-variable]
-   int pwm = 0;
-       ^~~
 arm-none-eabi-gcc -o "BLINK_LED.elf" @"objects.list"   -mcpu=cortex-m3 -T"C:\SOFTWARE\Development_board_V0\BLINK_LED\STM32F103C8TX_FLASH.ld" --specs=nosys.specs -Wl,-Map="BLINK_LED.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
 Finished building target: BLINK_LED.elf
  
 arm-none-eabi-objdump -h -S  BLINK_LED.elf  > "BLINK_LED.list"
+arm-none-eabi-objcopy  -O binary  BLINK_LED.elf  "BLINK_LED.bin"
 arm-none-eabi-size   BLINK_LED.elf 
    text	   data	    bss	    dec	    hex	filename
-  11344	     20	   1916	  13280	   33e0	BLINK_LED.elf
+  11348	     20	   1916	  13284	   33e4	BLINK_LED.elf
 Finished building: default.size.stdout
+ 
+Finished building: BLINK_LED.bin
  
 Finished building: BLINK_LED.list
  
 
-15:09:27 Build Finished. 0 errors, 1 warnings. (took 1s.618ms)
+10:34:53 Build Finished. 0 errors, 0 warnings. (took 2s.389ms)
 
