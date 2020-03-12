@@ -8,6 +8,7 @@
 
 #include "PWM_signal.h"
 #include "main.h"
+#include "Math.h"
 
 void PWM_Init(void){
 
@@ -22,11 +23,14 @@ void PWM_Init(void){
 
 void PWM_Set(uint8_t Pinnr, uint16_t PWM_value){
 
-if (PWM_value > 65535){
-	PWM_value = 65535;
+
+if (PWM_value > 100){
+	PWM_value = 100;
 } else if (PWM_value < 0){
 		PWM_value = 0;
 }
+
+PWM_value = map(PWM_value, 0, 100, 0, 65535);
 
 	if (Pinnr == 1){
 		TIM1->CCR1 = PWM_value;
@@ -44,3 +48,4 @@ if (PWM_value > 65535){
 
 
 }
+

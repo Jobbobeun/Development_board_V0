@@ -15,12 +15,12 @@ void Application()
 	HAL_GPIO_TogglePin(GPIOB, GPIO_PIN_9);
 	//HAL_Delay(2000);
 
-	for (int i = 0; i<65535; i+=100){
+	for (int i = 0; i<100; i++){
 		PWM_Set(PWM_1, i);
 		HAL_Delay(1);
 	}
 
-	for (int i = 65535; i>0; i-=100){
+	for (int i = 100; i>0; i--){
 		PWM_Set(PWM_1, i);
 		HAL_Delay(1);
 	}
