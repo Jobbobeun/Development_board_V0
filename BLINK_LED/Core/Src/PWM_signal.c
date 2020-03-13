@@ -9,9 +9,13 @@
 #include "PWM_signal.h"
 #include "main.h"
 #include "Math.h"
+#include "Initialization.h"
+
 
 void PWM_Init(void){
 
+	MX_TIM1_Init();
+    MX_TIM2_Init();
 	HAL_TIM_PWM_Start(&htim1, TIM_CHANNEL_1);
 	HAL_TIM_PWM_Start(&htim1, TIM_CHANNEL_2);
 	HAL_TIM_PWM_Start(&htim1, TIM_CHANNEL_3);
@@ -48,4 +52,5 @@ PWM_value = map(PWM_value, 0, 100, 0, 65535);
 
 
 }
+
 
