@@ -6,14 +6,18 @@
  */
 
 #include "application.h"
-#include "stm32f1xx_hal.h"
+#include "gpio.h"
 #include "main.h"
+
 
 void Application(void)
 {
-	HAL_GPIO_TogglePin(GPIOB, GPIO_PIN_9);
-	HAL_Delay(2000);
+	GPIO_Write(GPIOB, GPIO_PIN_9, GPIO_PIN_SET);
+	HAL_Delay(1000);
+	GPIO_Write(GPIOB, GPIO_PIN_9, GPIO_PIN_RESET);
+	HAL_Delay(500);
 
+/*
 	for (int i = 0; i<65535; i+=100){
 		TIM1->CCR1 = i;
 		HAL_Delay(1);
@@ -23,5 +27,6 @@ void Application(void)
 		TIM1->CCR1 = i;
 		HAL_Delay(1);
 	}
+*/
 
 }
