@@ -16,6 +16,9 @@ void Application(void)
 {
 
 	GPIO_Write(GPIOB, GPIO_PIN_9, GPIO_PIN_SET);
+	HAL_Delay(1000);
+	GPIO_Write(GPIOB, GPIO_PIN_9, GPIO_PIN_RESET);
+	HAL_Delay(500);
 
 
 	for (uint8_t i = 0; i<100; i++){
@@ -23,8 +26,6 @@ void Application(void)
 
 		HAL_Delay(1);
 	}
-
-	GPIO_Write(GPIOB, GPIO_PIN_9, GPIO_PIN_RESET);
 
 	for (uint8_t i = 100; i>0; i--){
 		PWM_Set(PWM_1, i);

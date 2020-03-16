@@ -53,7 +53,7 @@ extern "C" {
 void HAL_TIM_MspPostInit(TIM_HandleTypeDef *htim);
 
 /* Exported functions prototypes ---------------------------------------------*/
-void Error_Handler(void);
+
 
 /* USER CODE BEGIN EFP */
 
@@ -84,9 +84,9 @@ void Error_Handler(void);
 #define Output_2_GPIO_Port GPIOB
 #define Output_1_Pin GPIO_PIN_9
 #define Output_1_GPIO_Port GPIOB
-/* USER CODE BEGIN Private defines */
 
-/* USER CODE END Private defines */
+
+
 
 #ifdef __cplusplus
 }

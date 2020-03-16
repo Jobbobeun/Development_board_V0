@@ -1,0 +1,19 @@
+/*
+ * Application.c
+ *
+ *  Created on: 9 Mar 2020
+ *      Author: Rick
+ */
+
+#include "application.h"
+#include "gpio.h"
+#include "main.h"
+#include "PWM_signal.h"
+#include "stm32f1xx_hal_gpio.h"
+
+
+void Application(void)
+{
+
+
+}
