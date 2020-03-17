@@ -50,7 +50,6 @@ PWM_value = map(PWM_value, 0, 100, 0, 65535);
 		TIM2->CCR2 = PWM_value;
 	}
 
-
 }
 
 
