@@ -10,12 +10,14 @@
 #define INC_SERIALDEBUG_H_
 
 #include "stdint.h"
- #include <stdio.h>
- #include <stdlib.h>
- #include <string.h>
+ #include "stdio.h"
+ #include "stdlib.h"
+ #include "string.h"
+
 
 void Debugprint(char data[]);
-void Debugprintln(uint8_t data[]);
+void Debugprintln(char data[]);
+void Debugprintvar(char data[]);
 
 
 #endif /* INC_SERIALDEBUG_H_ */
