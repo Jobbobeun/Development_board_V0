@@ -16,6 +16,7 @@
 #include "stm32f1xx_hal_uart.h"
 
 
+// Development board application function
 
 void Application(void)
 {
