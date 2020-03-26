@@ -54,3 +54,8 @@ void I2C_ADXL345_test(void)
 	y = ((data_rec[3]<<8)|data_rec[2]);		//Y vals in data array
 	z = ((data_rec[5]<<8)|data_rec[4]); 	//Z vals in data array
 }
+
+void I2C_IO_Expander_test(uint8_t adress)
+{
+	I2C_Read (0x00, adress, 1);
+}

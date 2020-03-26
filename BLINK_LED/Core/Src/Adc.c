@@ -9,7 +9,7 @@
 
 uint16_t adcread(uint8_t pin_number)
 {
-	uint16_t adc_value;
+	/*uint16_t adc_value;
 
 	HAL_ADC_Start(&hadc1);
 	    HAL_ADC_PollForConversion(&hadc1, HAL_MAX_DELAY);
@@ -17,4 +17,5 @@ uint16_t adcread(uint8_t pin_number)
 	    adc_value = HAL_ADC_GetValue(&hadc1);
 
 	return adc_value;
+	*/
 }

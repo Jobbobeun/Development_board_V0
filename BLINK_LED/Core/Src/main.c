@@ -5,6 +5,7 @@
 #include "Error.h"
 #include "Serialdebug.h"
 #include "stdio.h"
+#include "i2c.h"
 
 
 void SystemClock_Config(void);
@@ -21,6 +22,9 @@ int main(void) {
 	MX_I2C2_Init();
 	MX_RTC_Init();
 	MX_USART2_UART_Init();
+
+	//I2C_ADXL_Init();
+	I2C_IO_Expander_test(ADXL345_address);
 
 
 	while (1) {
