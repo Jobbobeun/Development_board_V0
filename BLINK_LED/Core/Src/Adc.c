@@ -6,15 +6,13 @@
  */
 
 #include "Adc.h"
+#include "Initialization.h"
+#include "main.h"
 
-uint16_t adcread(uint8_t pin_number)
-{
-	uint16_t adc_value;
+void ADC_Init(void){
 
-	HAL_ADC_Start(&hadc1);
-	    HAL_ADC_PollForConversion(&hadc1, HAL_MAX_DELAY);
+	HAL_ADC_Start_DMA(&hadc1, ADC_array, 7);
 
-	    adc_value = HAL_ADC_GetValue(&hadc1);
-
-	return adc_value;
 }
+
+

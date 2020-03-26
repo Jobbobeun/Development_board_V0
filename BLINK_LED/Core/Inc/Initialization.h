@@ -12,10 +12,12 @@
  #include <stdio.h>
  #include <stdlib.h>
  #include <string.h>
+#include "stm32f1xx_hal.h"
 
 TIM_HandleTypeDef htim1;
 TIM_HandleTypeDef htim2;
 ADC_HandleTypeDef hadc1;
+DMA_HandleTypeDef hdma_adc1;
 I2C_HandleTypeDef hi2c1;
 I2C_HandleTypeDef hi2c2;
 RTC_HandleTypeDef hrtc;
@@ -29,5 +31,6 @@ UART_HandleTypeDef huart2;
  void MX_I2C2_Init(void);
  void MX_RTC_Init(void);
  void MX_USART2_UART_Init(void);
+ void MX_DMA_Init(void);
 
 #endif /* INC_INITIALIZATION_H_ */

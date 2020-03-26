@@ -5,22 +5,25 @@
 #include "Error.h"
 #include "Serialdebug.h"
 #include "stdio.h"
-
+#include "Adc.h"
 
 void SystemClock_Config(void);
 
 
 int main(void) {
 
-
-	MX_GPIO_Init();
-	PWM_Init();
+	HAL_Init();
 	SystemClock_Config();
+	MX_GPIO_Init();
+	MX_DMA_Init();
 	MX_ADC1_Init();
 	MX_I2C1_Init();
 	MX_I2C2_Init();
 	MX_RTC_Init();
 	MX_USART2_UART_Init();
+	PWM_Init();
+	ADC_Init();
+
 
 
 	while (1) {

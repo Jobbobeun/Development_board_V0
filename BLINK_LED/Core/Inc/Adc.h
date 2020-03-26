@@ -13,7 +13,9 @@
  #include "stdlib.h"
  #include "string.h"
 
-uint16_t adcread(uint8_t pin_number);
+uint32_t ADC_array[7];
+
+void ADC_Init(void);
 
 
 
