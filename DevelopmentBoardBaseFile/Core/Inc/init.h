@@ -5,9 +5,9 @@
  *      Author: nlrstem
  */
 
-#ifndef INC_DEVBOARD_INIT_H_
-#define INC_DEVBOARD_INIT_H_
+#ifndef INC_INIT_H_
+#define INC_INIT_H_
 
 void DevBoardInit(void);
 
-#endif /* INC_DEVBOARD_INIT_H_ */
+#endif /* INC_INIT_H_ */
