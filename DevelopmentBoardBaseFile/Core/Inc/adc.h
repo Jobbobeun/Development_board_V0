@@ -26,6 +26,7 @@
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
 
+
 /* USER CODE BEGIN Includes */
 
 /* USER CODE END Includes */
@@ -39,7 +40,8 @@ extern ADC_HandleTypeDef hadc1;
 void MX_ADC1_Init(void);
 
 /* USER CODE BEGIN Prototypes */
-
+void ADC_init(void);
+void HAL_ADC_ConvCpltCallback(ADC_HandleTypeDef* hadc);
 /* USER CODE END Prototypes */
 
 #ifdef __cplusplus

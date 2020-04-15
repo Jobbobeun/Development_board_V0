@@ -5,6 +5,8 @@
  *      Author: nlrstem
  */
 
-void DevBoardInit(void){
+#include "adc.h"
 
+void DevBoardInit(void){
+	ADC_init();
 }
