@@ -19,7 +19,6 @@
 /* USER CODE END Header */
 
 /* Includes ------------------------------------------------------------------*/
-#include <init.h>
 #include "main.h"
 #include "adc.h"
 #include "dma.h"
@@ -30,6 +29,7 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
+#include "init.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -79,7 +79,7 @@ int main(void)
   HAL_Init();
 
   /* USER CODE BEGIN Init */
-  DevBoardInit();
+
   /* USER CODE END Init */
 
   /* Configure the system clock */
@@ -99,7 +99,7 @@ int main(void)
   MX_TIM2_Init();
   MX_USART2_UART_Init();
   /* USER CODE BEGIN 2 */
-
+  DevBoardInit();
   /* USER CODE END 2 */
 
   /* Infinite loop */
