@@ -30,6 +30,7 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
+#include "application.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -79,7 +80,7 @@ int main(void)
   HAL_Init();
 
   /* USER CODE BEGIN Init */
-  DevBoardInit();
+
   /* USER CODE END Init */
 
   /* Configure the system clock */
@@ -99,7 +100,7 @@ int main(void)
   MX_TIM2_Init();
   MX_USART2_UART_Init();
   /* USER CODE BEGIN 2 */
-
+  DevBoardInit();
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -107,7 +108,7 @@ int main(void)
   while (1)
   {
     /* USER CODE END WHILE */
-
+application();
     /* USER CODE BEGIN 3 */
   }
   /* USER CODE END 3 */
