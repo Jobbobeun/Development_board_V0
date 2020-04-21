@@ -30,6 +30,8 @@
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 #include "init.h"
+#include "application.h"
+
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -107,7 +109,7 @@ int main(void)
   while (1)
   {
     /* USER CODE END WHILE */
-
+application();
     /* USER CODE BEGIN 3 */
   }
   /* USER CODE END 3 */
