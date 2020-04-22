@@ -199,10 +199,13 @@ void ADC_init(void)
 	HAL_ADC_Start_DMA(&hadc1, (uint32_t*)adcValue, 7);
 }
 
-void HAL_ADC_ConvCpltCallback(ADC_HandleTypeDef* hadc)
+uint32_t AdcRead(uint8_t PinNumber)
 {
 
+return adcValue[PinNumber -1];
+
 }
+
 /* USER CODE END 1 */
 
 /************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/

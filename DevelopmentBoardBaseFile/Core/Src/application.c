@@ -7,6 +7,8 @@
 
 
 #include "application.h"
+#include "adc.h"
+
 
 void application(void){
 
