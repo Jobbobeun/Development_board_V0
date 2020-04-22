@@ -19,6 +19,8 @@
 
 /* Includes ------------------------------------------------------------------*/
 #include "adc.h"
+#include "main.h"
+#include "stm32f1xx_hal.h"
 
 /* USER CODE BEGIN 0 */
 uint16_t adcValue[7];
@@ -196,7 +198,7 @@ void HAL_ADC_MspDeInit(ADC_HandleTypeDef* adcHandle)
 /* USER CODE BEGIN 1 */
 void ADC_init(void)
 {
-	HAL_ADC_Start_DMA(&hadc1, (uint32_t*)adcValue, 7);
+	HAL_ADC_Start_DMA(&hadc1, (uint32_t*)adcValue, 2);
 }
 
 uint32_t AdcRead(uint8_t PinNumber)

@@ -6,9 +6,7 @@
  */
 
 #include "adc.h"
-#include "init.h"
 
 void DevBoardInit(void){
 	ADC_init();
-
 }
