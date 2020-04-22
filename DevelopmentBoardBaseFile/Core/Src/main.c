@@ -32,7 +32,6 @@
 /* USER CODE BEGIN Includes */
 #include "init.h"
 #include "application.h"
-
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
