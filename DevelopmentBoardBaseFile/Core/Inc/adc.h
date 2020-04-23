@@ -26,6 +26,7 @@
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
 
+
 /* USER CODE BEGIN Includes */
 
 /* USER CODE END Includes */
@@ -39,7 +40,8 @@ extern ADC_HandleTypeDef hadc1;
 void MX_ADC1_Init(void);
 
 /* USER CODE BEGIN Prototypes */
-
+void ADC_init(void);
+uint32_t AdcRead(uint8_t PinNumber);
 /* USER CODE END Prototypes */
 
 #ifdef __cplusplus
