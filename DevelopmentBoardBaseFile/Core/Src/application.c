@@ -8,9 +8,11 @@
 
 #include "application.h"
 #include "adc.h"
-
+#include "gpio.h"
 
 void application(void){
 
+GPIO_test();
 
 }
+

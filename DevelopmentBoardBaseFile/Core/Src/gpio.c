@@ -93,6 +93,28 @@ void MX_GPIO_Init(void)
 
 /* USER CODE BEGIN 2 */
 
+bool IoWrite(uint8_t PinNumber, bool state){
+
+	switch(PinNumber){
+	case 1:
+		HAL_GPIO_WritePin(GPIOB, OUT_1_Pin, state);
+		return true;
+		break;
+	case 2:
+		return true;
+		break;
+
+		return false;
+	}
+
+}
+
+void GPIO_test(void){
+	IoWrite(1,true);
+	HAL_Delay(500);
+	IoWrite(1,false);
+	HAL_Delay(500);
+}
 /* USER CODE END 2 */
 
 /************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/

@@ -28,7 +28,7 @@
 #include "main.h"
 
 /* USER CODE BEGIN Includes */
-
+#include "stdbool.h"
 /* USER CODE END Includes */
 
 /* USER CODE BEGIN Private defines */
@@ -38,7 +38,8 @@
 void MX_GPIO_Init(void);
 
 /* USER CODE BEGIN Prototypes */
-
+bool IoWrite(uint8_t PinNumber, bool state);
+void GPIO_test(void);
 /* USER CODE END Prototypes */
 
 #ifdef __cplusplus
