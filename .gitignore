@@ -43,3 +43,5 @@
 .metadata/.plugins/org.eclipse.core.resources/.history/fd/6055c0879463001a1bd28d3091661873
 Test_uart/
 .metadata/
+DevelopmentBoardBaseFile/.mxproject
+*.project
