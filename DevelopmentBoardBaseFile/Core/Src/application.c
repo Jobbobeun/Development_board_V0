@@ -15,6 +15,7 @@
 
 void application(void){
 
+/*
 for (i = 1 ; i < 8 ; i++){
 
 	if (i ==1 ){
@@ -32,8 +33,8 @@ for (i = 1 ; i < 8 ; i++){
 	}else if (i ==7 ){
 	HAL_GPIO_TogglePin(GPIOA, OUT_7_Pin);
 	}
-
 	HAL_Delay(100);
 }
+*/
 
 }
