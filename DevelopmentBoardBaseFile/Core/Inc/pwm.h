@@ -20,8 +20,6 @@ void StartPWM_5(void);
 void StartPWM_6(void);
 void StartPWM_All(void);
 
-long map(long x, long in_min, long in_max, long out_min, long out_max);
-
 void PWM_Duty_Cycle(uint8_t PWM_Channel, uint16_t Duty_Cycle);
 
 #endif /* INC_PWM_H_ */
