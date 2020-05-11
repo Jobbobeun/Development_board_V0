@@ -19,10 +19,10 @@
 
 /* Includes ------------------------------------------------------------------*/
 #include "adc.h"
-#include "main.h"
-#include "stm32f1xx_hal.h"
 
 /* USER CODE BEGIN 0 */
+#include "main.h"
+#include "stm32f1xx_hal.h"
 uint16_t adcValue[7];
 /* USER CODE END 0 */
 
@@ -130,14 +130,14 @@ void HAL_ADC_MspInit(ADC_HandleTypeDef* adcHandle)
     PA7     ------> ADC1_IN7
     PB0     ------> ADC1_IN8 
     */
-    GPIO_InitStruct.Pin = ADC_1_Pin|ADC_2_Pin|ADC_3_Pin|ADC_4_Pin 
-                          |ADC_5_Pin|ADC_6_Pin;
+    GPIO_InitStruct.Pin = ADC_1_Pin|ADC_7_Pin|ADC_6_Pin|ADC_5_Pin 
+                          |ADC_4_Pin|ADC_3_Pin;
     GPIO_InitStruct.Mode = GPIO_MODE_ANALOG;
     HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
 
-    GPIO_InitStruct.Pin = ADC_7_Pin;
+    GPIO_InitStruct.Pin = ADC_2_Pin;
     GPIO_InitStruct.Mode = GPIO_MODE_ANALOG;
-    HAL_GPIO_Init(ADC_7_GPIO_Port, &GPIO_InitStruct);
+    HAL_GPIO_Init(ADC_2_GPIO_Port, &GPIO_InitStruct);
 
     /* ADC1 DMA Init */
     /* ADC1 Init */
@@ -182,10 +182,10 @@ void HAL_ADC_MspDeInit(ADC_HandleTypeDef* adcHandle)
     PA7     ------> ADC1_IN7
     PB0     ------> ADC1_IN8 
     */
-    HAL_GPIO_DeInit(GPIOA, ADC_1_Pin|ADC_2_Pin|ADC_3_Pin|ADC_4_Pin 
-                          |ADC_5_Pin|ADC_6_Pin);
+    HAL_GPIO_DeInit(GPIOA, ADC_1_Pin|ADC_7_Pin|ADC_6_Pin|ADC_5_Pin 
+                          |ADC_4_Pin|ADC_3_Pin);
 
-    HAL_GPIO_DeInit(ADC_7_GPIO_Port, ADC_7_Pin);
+    HAL_GPIO_DeInit(ADC_2_GPIO_Port, ADC_2_Pin);
 
     /* ADC1 DMA DeInit */
     HAL_DMA_DeInit(adcHandle->DMA_Handle);
