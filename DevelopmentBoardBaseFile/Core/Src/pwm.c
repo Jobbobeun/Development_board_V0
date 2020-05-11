@@ -44,7 +44,7 @@ void StartPWM_5(void) {
 }
 
 /**
- * @brief  Start PWM Channel 6
+ * @brief  Start PWM Channel 6 (PA8)
  */
 void StartPWM_6(void) {
 	HAL_TIM_PWM_Start(&htim1, TIM_CHANNEL_1);
@@ -67,25 +67,25 @@ long map(long x, long in_min, long in_max, long out_min, long out_max) {
  * @param  PWM Channel DevBoard PWM_x labels
  * @param  Percentage from 0 to 100%
  */
-void LedBrightness(uint8_t PWM_Channel, uint16_t Brightness) {
+void PWM_Duty_Cycle(uint8_t PWM_Channel, uint16_t Duty_Cycle) {
 
-	long map_val = map(Brightness, 0, 100, 0, 1024);
+	long map_val = map(Duty_Cycle, 0, 100, 0, 1024);
 
 	switch (PWM_Channel) {
 	case PWM_1:
-		__HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_1, map_val);
+		__HAL_TIM_SET_COMPARE(&htim2, TIM_CHANNEL_2, map_val);
 		break;
 
 	case PWM_2:
-		__HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_2, map_val);
+		__HAL_TIM_SET_COMPARE(&htim2, TIM_CHANNEL_1, map_val);
 		break;
 
 	case PWM_3:
-		__HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_2, map_val);
+		__HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_4, map_val);
 		break;
 
 	case PWM_4:
-		__HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_2, map_val);
+		__HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_3, map_val);
 		break;
 
 	case PWM_5:
@@ -93,7 +93,7 @@ void LedBrightness(uint8_t PWM_Channel, uint16_t Brightness) {
 		break;
 
 	case PWM_6:
-		__HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_2, map_val);
+		__HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_1, map_val);
 		break;
 	}
 }
