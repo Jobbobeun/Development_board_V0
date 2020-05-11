@@ -16,9 +16,9 @@ void application(void){
 for (i = 1 ; i < 8 ; i++){
 
 	if (i ==1 ){
-	HAL_GPIO_TogglePin(GPIOB, OUT_8_Pin);
+	HAL_GPIO_TogglePin(GPIOB, OUT_1_Pin);
 	} else if (i ==2 ){
-	HAL_GPIO_TogglePin(GPIOB, OUT_9_Pin);
+	HAL_GPIO_TogglePin(GPIOB, OUT_2_Pin);
 	}else if (i ==3 ){
 	HAL_GPIO_TogglePin(GPIOB, OUT_3_Pin);
 	}else if (i ==4 ){
