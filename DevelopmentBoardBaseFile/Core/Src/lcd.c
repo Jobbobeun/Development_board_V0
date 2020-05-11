@@ -6,9 +6,13 @@
  */
 
 #include "lcd.h"
+#include "stdio.h"
+
 extern I2C_HandleTypeDef hi2c1;
 
 #define SLAVE_ADDRESS_LCD 0x4E
+int intToAscii(int number);
+char string;
 
 void lcd_send_cmd (char cmd)
 {
@@ -96,4 +100,32 @@ void lcdPrint(char *data, int row, int column)
 {
 	lcd_put_cur(row, column);
 	lcd_send_string((char *)data);
+}
+
+void lcd_Demo(){
+
+
+
+	lcdPrint("Hallo world",0,0);
+	HAL_Delay(500);
+	lcdPrint("Hallo world",1,0);
+	HAL_Delay(500);
+
+	for (int i = 0 ; i < 10 ; i++){
+
+		string = intToAscii(i);
+		lcdPrint(&string,0,13);
+		HAL_Delay(100);
+
+	}
+
+	lcd_clear();
+	HAL_Delay(500);
+
+}
+
+
+int intToAscii(int number) {
+
+   return '0' + number;
 }

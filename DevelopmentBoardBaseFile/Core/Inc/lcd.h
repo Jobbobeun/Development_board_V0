@@ -24,4 +24,6 @@ void lcd_clear (void);
 
 void lcdPrint(char *data, int row, int column);
 
+void lcd_Demo(void);
+
 #endif /* INC_LCD_H_ */
