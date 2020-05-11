@@ -8,6 +8,7 @@
 
 #include "application.h"
 #include "adc.h"
+#include "pwm.h"
 
 
 void application(void){
