@@ -6,7 +6,10 @@
  */
 
 #include "adc.h"
+#include "lcd.h"
 
 void DevBoardInit(void){
 	ADC_init();
+	 lcd_init();
+	 lcd_send_string ("HELLO WORLD");
 }
