@@ -19,7 +19,6 @@
 /* USER CODE END Header */
 
 /* Includes ------------------------------------------------------------------*/
-#include <init.h>
 #include "main.h"
 #include "adc.h"
 #include "dma.h"
