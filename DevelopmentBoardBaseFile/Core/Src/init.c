@@ -6,7 +6,9 @@
  */
 
 #include "adc.h"
+#include "pwm.h"
 
 void DevBoardInit(void){
 	ADC_init();
+
 }
