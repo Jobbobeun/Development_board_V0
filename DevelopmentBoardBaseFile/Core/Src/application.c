@@ -9,6 +9,8 @@
 #include "application.h"
 #include "adc.h"
 #include "gpio.h"
+#include "pwm.h"
+
 
 
 void application(void){
