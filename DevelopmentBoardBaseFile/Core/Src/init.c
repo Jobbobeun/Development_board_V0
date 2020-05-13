@@ -7,8 +7,11 @@
 
 #include "adc.h"
 #include "pwm.h"
+#include "lcd.h"
 
 void DevBoardInit(void){
+
 	ADC_init();
+	lcd_init();
 
 }

@@ -9,9 +9,9 @@
 #include "application.h"
 #include "adc.h"
 #include "pwm.h"
+#include "lcd.h"
 
 
 void application(void){
-
 
 }
