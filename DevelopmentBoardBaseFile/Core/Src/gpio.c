@@ -96,6 +96,7 @@ void MX_GPIO_Init(void)
 bool IoWrite(uint8_t Output_Pin, bool Output_State){
 
 	switch(Output_Pin){
+
 	case 1:
 		HAL_GPIO_WritePin(GPIOB, OUT_1_Pin, Output_State);
 		return true;
@@ -124,8 +125,12 @@ bool IoWrite(uint8_t Output_Pin, bool Output_State){
 		HAL_GPIO_WritePin(GPIOA, OUT_7_Pin, Output_State);
 		return true;
 		break;
-	return false;
+
+	default:
+		return false;
+
 		}
+
 	}
 
 	bool IoRead(uint8_t Input_Pin){
@@ -151,43 +156,50 @@ bool IoWrite(uint8_t Output_Pin, bool Output_State){
 			HAL_GPIO_ReadPin(GPIOB, IN_5_Pin);
 			return true;
 			break;
-		return false;
+
+		default:
+			return false;
+
 			}
 		}
 
-	bool IoToggle(uint8_t Toggle_Pin){
+bool IoToggle(uint8_t Toggle_Pin){
 
 	switch(Toggle_Pin){
 		case 1:
-			HAL_GPIO_TogglePin(GPIOB, Out_1_Pin);
+			HAL_GPIO_TogglePin(GPIOB, OUT_1_Pin);
 			return true;
 			break;
 		case 2:
-			HAL_GPIO_TogglePin(GPIOB, Out_2_Pin);
+			HAL_GPIO_TogglePin(GPIOB, OUT_2_Pin);
 			return true;
 			break;
 		case 3:
-			HAL_GPIO_TogglePin(GPIOB, Out_3_Pin);
+			HAL_GPIO_TogglePin(GPIOB, OUT_3_Pin);
 			return true;
 			break;
 		case 4:
-			HAL_GPIO_TogglePin(GPIOB, Out_4_Pin);
+			HAL_GPIO_TogglePin(GPIOB, OUT_4_Pin);
 			return true;
 			break;
 		case 5:
-			HAL_GPIO_TogglePin(GPIOB, Out_5_Pin);
+			HAL_GPIO_TogglePin(GPIOB, OUT_5_Pin);
 			return true;
 			break;
 		case 6:
-			HAL_GPIO_TogglePin(GPIOB, Out_6_Pin);
+			HAL_GPIO_TogglePin(GPIOB, OUT_6_Pin);
 			return true;
 			break;
 		case 7:
-			HAL_GPIO_TogglePin(GPIOC, Out_7_Pin);
+			HAL_GPIO_TogglePin(GPIOC, OUT_7_Pin);
 			return true;
 			break;
-		return false;
+
+		default:
+			return false;
+
 			}
+
 		}
 
 
