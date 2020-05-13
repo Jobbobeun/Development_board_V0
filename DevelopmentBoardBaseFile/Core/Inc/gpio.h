@@ -43,6 +43,7 @@ bool IoRead(uint8_t Input_pin);
 bool IoToggle(uint8_t Toggle_pin);
 
 void GPIO_test(void);
+void PCF8574_Demo(void);
 /* USER CODE END Prototypes */
 
 #ifdef __cplusplus

@@ -19,6 +19,7 @@
 
 /* Includes ------------------------------------------------------------------*/
 #include "gpio.h"
+#include "i2c.h"
 /* USER CODE BEGIN 0 */
 
 /* USER CODE END 0 */
@@ -202,15 +203,34 @@ bool IoToggle(uint8_t Toggle_Pin){
 
 		}
 
-
-
-
 void GPIO_test(void){
 	IoWrite(1,true);
 	HAL_Delay(500);
 	IoWrite(1,false);
 	HAL_Delay(500);
 }
+
+void PCF8574_Demo(void){
+
+	uint8_t buf[2];
+	buf[0] = 0x00; // At first to set all the IO's as outputs (0) next loops to turn off all outputs
+	buf[1] = 0x30; // To turn on P4 and P5
+
+	uint8_t data[1];
+	data[0] = 0x00; // To turn off all outputs
+
+	HAL_Delay(2000);
+	// This code toggles output P4 and P5 at 2 Hz
+	// First byte after power on defines the IO's as input(1) or as output(0)
+	// Seconde byte = pin P4 and P5 HIGH --> binary P7 P6 P5 P4 P3 P2 P1 P0 = 0 0 1 1 0 0 0 0 = 0x30
+	// Write address of the PCF is 0x40, two bytes are sent)
+	HAL_I2C_Master_Transmit(&hi2c1, 0x40, (uint8_t*) buf, 2, 1000);
+	HAL_Delay(2000);
+
+	// One byte is sent (data[0])
+	HAL_I2C_Master_Transmit(&hi2c1, 0x40, (uint8_t*) data, 1, 1000);
+}
+
 /* USER CODE END 2 */
 
 /************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/
