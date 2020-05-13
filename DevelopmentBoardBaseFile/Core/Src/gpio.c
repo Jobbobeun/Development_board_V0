@@ -93,21 +93,105 @@ void MX_GPIO_Init(void)
 
 /* USER CODE BEGIN 2 */
 
-bool IoWrite(uint8_t PinNumber, bool state){
+bool IoWrite(uint8_t Output_Pin, bool Output_State){
 
-	switch(PinNumber){
+	switch(Output_Pin){
 	case 1:
-		HAL_GPIO_WritePin(GPIOB, OUT_1_Pin, state);
+		HAL_GPIO_WritePin(GPIOB, OUT_1_Pin, Output_State);
 		return true;
 		break;
 	case 2:
+		HAL_GPIO_WritePin(GPIOB, OUT_2_Pin, Output_State);
 		return true;
 		break;
-
-		return false;
+	case 3:
+		HAL_GPIO_WritePin(GPIOB, OUT_3_Pin, Output_State);
+		return true;
+		break;
+	case 4:
+		HAL_GPIO_WritePin(GPIOB, OUT_4_Pin, Output_State);
+		return true;
+		break;
+	case 5:
+		HAL_GPIO_WritePin(GPIOB, OUT_5_Pin, Output_State);
+		return true;
+		break;
+	case 6:
+		HAL_GPIO_WritePin(GPIOB, OUT_6_Pin, Output_State);
+		return true;
+		break;
+	case 7:
+		HAL_GPIO_WritePin(GPIOA, OUT_7_Pin, Output_State);
+		return true;
+		break;
+	return false;
+		}
 	}
 
-}
+	bool IoRead(uint8_t Input_Pin){
+
+		switch(Input_Pin){
+		case 1:
+			HAL_GPIO_ReadPin(GPIOB, IN_1_Pin);
+			return true;
+			break;
+		case 2:
+			HAL_GPIO_ReadPin(GPIOB, IN_2_Pin);
+			return true;
+			break;
+		case 3:
+			HAL_GPIO_ReadPin(GPIOB, IN_3_Pin);
+			return true;
+			break;
+		case 4:
+			HAL_GPIO_ReadPin(GPIOC, IN_4_Pin);
+			return true;
+			break;
+		case 5:
+			HAL_GPIO_ReadPin(GPIOB, IN_5_Pin);
+			return true;
+			break;
+		return false;
+			}
+		}
+
+	bool IoToggle(uint8_t Toggle_Pin){
+
+	switch(Toggle_Pin){
+		case 1:
+			HAL_GPIO_TogglePin(GPIOB, Out_1_Pin);
+			return true;
+			break;
+		case 2:
+			HAL_GPIO_TogglePin(GPIOB, Out_2_Pin);
+			return true;
+			break;
+		case 3:
+			HAL_GPIO_TogglePin(GPIOB, Out_3_Pin);
+			return true;
+			break;
+		case 4:
+			HAL_GPIO_TogglePin(GPIOB, Out_4_Pin);
+			return true;
+			break;
+		case 5:
+			HAL_GPIO_TogglePin(GPIOB, Out_5_Pin);
+			return true;
+			break;
+		case 6:
+			HAL_GPIO_TogglePin(GPIOB, Out_6_Pin);
+			return true;
+			break;
+		case 7:
+			HAL_GPIO_TogglePin(GPIOC, Out_7_Pin);
+			return true;
+			break;
+		return false;
+			}
+		}
+
+
+
 
 void GPIO_test(void){
 	IoWrite(1,true);

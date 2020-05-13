@@ -38,7 +38,10 @@
 void MX_GPIO_Init(void);
 
 /* USER CODE BEGIN Prototypes */
-bool IoWrite(uint8_t PinNumber, bool state);
+bool IoWrite(uint8_t Output_pin, bool Output_State);
+bool IoRead(uint8_t Input_pin);
+bool IoToggle(uint8_t Toggle_pin);
+
 void GPIO_test(void);
 /* USER CODE END Prototypes */
 
