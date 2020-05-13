@@ -9,6 +9,8 @@
 #define INC_LCD_H_
 
 #include "stm32f1xx_hal.h"
+#include "stdio.h"
+#include "stdbool.h"
 
 void lcd_init (void);   // initialize lcd
 
@@ -23,6 +25,12 @@ void lcd_put_cur(int row, int col);  // put cursor at the entered position row (
 void lcd_clear (void);
 
 void lcdPrint(char *data, int row, int column);
+
+void lcdPrintInt(int data, int row, int column);
+
+bool lcdScroll(bool status);
+
+bool lcdCursor(bool status);
 
 void lcd_Demo(void);
 

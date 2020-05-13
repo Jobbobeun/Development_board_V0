@@ -6,13 +6,16 @@
  */
 
 #include "lcd.h"
-#include "stdio.h"
+
 
 extern I2C_HandleTypeDef hi2c1;
 
 #define SLAVE_ADDRESS_LCD 0x4E
+
 int intToAscii(int number);
-char string;
+char data_string;
+bool lcdScrollStatus;
+bool lcdCursorStatus;
 
 void lcd_send_cmd (char cmd)
 {
@@ -68,17 +71,17 @@ void lcd_put_cur(int row, int col)
 void lcd_init (void)
 {
 	// 4 bit initialisation
-	HAL_Delay(50);  // wait for >40ms
+	HAL_Delay(50);
 	lcd_send_cmd (0x30);
-	HAL_Delay(5);  // wait for >4.1ms
+	HAL_Delay(5);
 	lcd_send_cmd (0x30);
-	HAL_Delay(1);  // wait for >100us
+	HAL_Delay(1);
 	lcd_send_cmd (0x30);
 	HAL_Delay(10);
-	lcd_send_cmd (0x20);  // 4bit mode
+	lcd_send_cmd (0x20);
 	HAL_Delay(10);
 
-  // dislay initialisation
+	// dislay initialisation
 	lcd_send_cmd (0x28); // Function set --> DL=0 (4 bit mode), N = 1 (2 line display) F = 0 (5x8 characters)
 	HAL_Delay(1);
 	lcd_send_cmd (0x08); //Display on/off control --> D=0,C=0, B=0  ---> display off
@@ -89,6 +92,9 @@ void lcd_init (void)
 	lcd_send_cmd (0x06); //Entry mode set --> I/D = 1 (increment cursor) & S = 0 (no shift)
 	HAL_Delay(1);
 	lcd_send_cmd (0x0C); //Display on/off control --> D = 1, C and B = 0. (Cursor and blink, last two bits)
+
+	lcdScrollStatus = false;
+	lcdCursorStatus = false;
 }
 
 void lcd_send_string (char *str)
@@ -102,24 +108,80 @@ void lcdPrint(char *data, int row, int column)
 	lcd_send_string((char *)data);
 }
 
-void lcd_Demo(){
+void lcdPrintInt(int data, int row, int column)
+{
 
+	data_string = intToAscii(data);
 
+	lcdPrint(&data_string,0,13);
 
-	lcdPrint("Hallo world",0,0);
-	HAL_Delay(500);
-	lcdPrint("Hallo world",1,0);
-	HAL_Delay(500);
+}
 
-	for (int i = 0 ; i < 10 ; i++){
+bool lcdCursor(bool status)
+{
+	if (status && !lcdCursorStatus)
+	{
+		lcd_send_cmd (0x0F);
+		lcdCursorStatus = true;
+		return true;
+	}
+	else if (!status && lcdCursorStatus)
+	{
+		lcd_send_cmd (0x0C);
+		lcdCursorStatus = false;
+		return true;
+	}
+	else {
+		return false;
+	}
+}
 
-		string = intToAscii(i);
-		lcdPrint(&string,0,13);
-		HAL_Delay(100);
+bool lcdScroll (bool status)
+{
+	if (status && !lcdScrollStatus)
+	{
 
+		lcd_send_cmd (0x07);
+		lcdScrollStatus = true;
+		return true;
 	}
 
-	lcd_clear();
+	else if (!status && lcdScrollStatus)
+	{
+		lcd_send_cmd (0x04);
+		lcd_send_cmd (0x02);
+		lcdScrollStatus = false;
+		return true;
+	}
+
+	else
+	{
+		return false;
+	}
+
+}
+
+void lcd_Demo(){
+
+	// Example how to display a text to LCD:
+	lcdCursor(true);
+	lcdPrint("Hallo world",0,0);
+	HAL_Delay(500);
+	lcdPrint("Hallo world",1,5);
+	HAL_Delay(5000);
+	lcdCursor(false);
+	HAL_Delay(10);
+	lcdScroll(true);
+	HAL_Delay(100);
+
+	// Example how to display a int in the LCD:
+	for (int i = 0 ; i < 10 ; i++){
+		lcdPrintInt(i,0,13);
+		HAL_Delay(100);
+	}
+
+	// Turn scrolling off
+	lcdScroll(false);
 	HAL_Delay(500);
 
 }
