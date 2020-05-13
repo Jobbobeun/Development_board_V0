@@ -10,13 +10,10 @@
 #include "adc.h"
 #include "gpio.h"
 #include "pwm.h"
+#include "lcd.h"
 
 
 
 void application(void){
-
-
-
-
 
 }
