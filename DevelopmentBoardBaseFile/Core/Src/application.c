@@ -10,8 +10,9 @@
 #include "adc.h"
 #include "pwm.h"
 #include "lcd.h"
+#include "servo.h"
 
 
 void application(void){
-
+	servo_demo();
 }
