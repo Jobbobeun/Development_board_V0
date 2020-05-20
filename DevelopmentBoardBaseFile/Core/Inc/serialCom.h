@@ -6,7 +6,9 @@
  */
 
 #include "stm32f1xx_hal.h"
-#include "stm32_hal_legacy.h"
+#include "application.h"
+#include "gpio.h"
+#include "main.h"
 
 #include "usart.h"
 

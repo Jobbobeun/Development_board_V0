@@ -8,11 +8,14 @@
 //uint8_t serial;
 
 #include "serialCom.h"
+#include "stdint.h"
 #include "stdio.h"
+#include "stdlib.h"
+#include "string.h"
 
-uint8_t data[10];
-uint8_t data1[] = {0,1,2,3,4,5,6,7,8,9};
-
+char data[8];
+//uint8_t data1[] = {0,1,2,3,4,5,6,7,8,9};
+char data1[] = {"h"};
 
 int serialcom_init(void)
 {
@@ -22,8 +25,8 @@ int serialcom_init(void)
 
 	while(1)
 	{
-		//HAL_UART_Receive(&huart2, data, 10, 1000);
-		HAL_UART_Transmit(&huart2, data1, 10, 1000);
+		HAL_UART_Receive(&huart2, (uint8_t*)data, strlen(data), HAL_MAX_DELAY);
+		HAL_UART_Transmit(&huart2, (uint8_t*)data1, strlen(data1) ,HAL_MAX_DELAY);
 	}
 
 }
