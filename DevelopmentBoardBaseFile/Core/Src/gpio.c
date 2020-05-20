@@ -20,6 +20,8 @@
 /* Includes ------------------------------------------------------------------*/
 #include "gpio.h"
 /* USER CODE BEGIN 0 */
+uint8_t GPIO_status[7];
+bool TESTTTT;
 
 /* USER CODE END 0 */
 
@@ -98,8 +100,19 @@ bool IoWrite(uint8_t Output_Pin, bool Output_State){
 	switch(Output_Pin){
 
 	case 1:
-		HAL_GPIO_WritePin(GPIOB, OUT_1_Pin, Output_State);
-		return true;
+
+		if (Output_State != GPIO_status[Output_Pin - 1])
+		{
+			HAL_GPIO_WritePin(GPIOB, OUT_1_Pin, Output_State);
+			GPIO_status[Output_Pin - 1] = Output_State;
+
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+
 		break;
 	case 2:
 		HAL_GPIO_WritePin(GPIOB, OUT_2_Pin, Output_State);
@@ -167,6 +180,7 @@ bool IoToggle(uint8_t Toggle_Pin){
 
 	switch(Toggle_Pin){
 		case 1:
+
 			HAL_GPIO_TogglePin(GPIOB, OUT_1_Pin);
 			return true;
 			break;
@@ -203,12 +217,18 @@ bool IoToggle(uint8_t Toggle_Pin){
 		}
 
 
+bool OutStatus(uint8_t Output_pin){
 
+return GPIO_status[Output_pin - 1];
+
+}
 
 void GPIO_test(void){
-	IoWrite(1,true);
+	TESTTTT = IoWrite(OUT_1,true);
 	HAL_Delay(500);
-	IoWrite(1,false);
+	TESTTTT = IoWrite(OUT_1,true);
+	HAL_Delay(500);
+	TESTTTT = IoWrite(OUT_1,false);
 	HAL_Delay(500);
 }
 /* USER CODE END 2 */
