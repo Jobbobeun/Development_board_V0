@@ -112,31 +112,95 @@ bool IoWrite(uint8_t Output_Pin, bool Output_State){
 		{
 			return false;
 		}
+		break;
+
+	case 2:
+
+		if (Output_State != GPIO_status[Output_Pin - 1])
+		{
+			HAL_GPIO_WritePin(GPIOB, OUT_2_Pin, Output_State);
+			GPIO_status[Output_Pin - 1] = Output_State;
+
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+		break;
+
+	case 3:
+
+		if (Output_State != GPIO_status[Output_Pin - 1])
+		{
+			HAL_GPIO_WritePin(GPIOB, OUT_3_Pin, Output_State);
+			GPIO_status[Output_Pin - 1] = Output_State;
+
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+		break;
+
+	case 4:
+
+		if (Output_State != GPIO_status[Output_Pin - 1])
+		{
+			HAL_GPIO_WritePin(GPIOB, OUT_4_Pin, Output_State);
+			GPIO_status[Output_Pin - 1] = Output_State;
+
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+		break;
+
+	case 5:
+
+		if (Output_State != GPIO_status[Output_Pin - 1])
+		{
+			HAL_GPIO_WritePin(GPIOB, OUT_5_Pin, Output_State);
+			GPIO_status[Output_Pin - 1] = Output_State;
+
+		return true;
+		}
+		else
+		{
+			return false;
+		}
 
 		break;
-	case 2:
-		HAL_GPIO_WritePin(GPIOB, OUT_2_Pin, Output_State);
-		return true;
-		break;
-	case 3:
-		HAL_GPIO_WritePin(GPIOB, OUT_3_Pin, Output_State);
-		return true;
-		break;
-	case 4:
-		HAL_GPIO_WritePin(GPIOB, OUT_4_Pin, Output_State);
-		return true;
-		break;
-	case 5:
-		HAL_GPIO_WritePin(GPIOB, OUT_5_Pin, Output_State);
-		return true;
-		break;
+
 	case 6:
-		HAL_GPIO_WritePin(GPIOB, OUT_6_Pin, Output_State);
+		if (Output_State != GPIO_status[Output_Pin - 1])
+		{
+			HAL_GPIO_WritePin(GPIOB, OUT_6_Pin, Output_State);
+			GPIO_status[Output_Pin - 1] = Output_State;
+
 		return true;
+		}
+		else
+		{
+			return false;
+		}
 		break;
+
 	case 7:
-		HAL_GPIO_WritePin(GPIOA, OUT_7_Pin, Output_State);
+		if (Output_State != GPIO_status[Output_Pin - 1])
+		{
+			HAL_GPIO_WritePin(GPIOA, OUT_7_Pin, Output_State);
+			GPIO_status[Output_Pin - 1] = Output_State;
+
 		return true;
+		}
+		else
+		{
+			return false;
+		}
 		break;
 
 	default:
@@ -224,11 +288,17 @@ return GPIO_status[Output_pin - 1];
 }
 
 void GPIO_test(void){
-	TESTTTT = IoWrite(OUT_1,true);
+	TESTTTT = IoWrite(OUT_2,true);
 	HAL_Delay(500);
-	TESTTTT = IoWrite(OUT_1,true);
+	TESTTTT = IoWrite(OUT_2,true);
 	HAL_Delay(500);
-	TESTTTT = IoWrite(OUT_1,false);
+	TESTTTT = IoWrite(OUT_2,false);
+	HAL_Delay(500);
+	TESTTTT = IoWrite(OUT_3,true);
+	HAL_Delay(500);
+	TESTTTT = IoWrite(OUT_3,true);
+	HAL_Delay(500);
+	TESTTTT = IoWrite(OUT_3,false);
 	HAL_Delay(500);
 }
 /* USER CODE END 2 */
