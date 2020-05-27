@@ -21,7 +21,6 @@
 #include "gpio.h"
 /* USER CODE BEGIN 0 */
 uint8_t GPIO_status[7];
-bool TESTTTT;
 
 /* USER CODE END 0 */
 
@@ -287,20 +286,6 @@ return GPIO_status[Output_pin - 1];
 
 }
 
-void GPIO_test(void){
-	TESTTTT = IoWrite(OUT_2,true);
-	HAL_Delay(500);
-	TESTTTT = IoWrite(OUT_2,true);
-	HAL_Delay(500);
-	TESTTTT = IoWrite(OUT_2,false);
-	HAL_Delay(500);
-	TESTTTT = IoWrite(OUT_3,true);
-	HAL_Delay(500);
-	TESTTTT = IoWrite(OUT_3,true);
-	HAL_Delay(500);
-	TESTTTT = IoWrite(OUT_3,false);
-	HAL_Delay(500);
-}
 /* USER CODE END 2 */
 
 /************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/

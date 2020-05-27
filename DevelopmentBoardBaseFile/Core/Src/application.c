@@ -14,7 +14,5 @@
 
 void application(void){
 
-GPIO_test();
-
 }
 
