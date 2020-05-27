@@ -13,20 +13,48 @@
 #include "stdlib.h"
 #include "string.h"
 
-char data[8];
-//uint8_t data1[] = {0,1,2,3,4,5,6,7,8,9};
-char data1[] = {"h"};
+char data1[10];
 
-int serialcom_init(void)
+
+//------------------------
+/* INITIALIZATION */
+//------------------------
+void serialcom_init(void)
+{
+	HAL_Init();
+	MX_GPIO_Init();
+	MX_USART2_UART_Init();
+}
+
+//------------------------
+/* SENDING FUNCTIONS */
+//------------------------
+void serialcom_SendChar(char data[], uint8_t delay)
+{
+	HAL_UART_Transmit(&huart2, (uint8_t*)data, strlen(data), 1000);
+	HAL_Delay(delay);
+}
+
+
+//------------------------
+/* RECEIVING FUNCTIONS */
+//------------------------
+
+int serialcom_ReceiveChar()
 {
 
-	//MX_GPIO_Init();
-	//MX_USART2_UART_Init();
-
-	while(1)
-	{
-		HAL_UART_Receive(&huart2, (uint8_t*)data, strlen(data), HAL_MAX_DELAY);
-		HAL_UART_Transmit(&huart2, (uint8_t*)data1, strlen(data1) ,HAL_MAX_DELAY);
-	}
-
+	HAL_UART_Receive(&huart2, (uint8_t*)data1, strlen(data1), 1000);
+	//HAL_Delay(delay1);
+	return data1[10];
 }
+
+
+
+/*while(1)
+{
+
+	HAL_UART_Receive(&huart2, (uint8_t*)data1, sizeof(data1), 1000);
+	//HAL_Delay(5000);
+	HAL_UART_Transmit(&huart2, (uint8_t*)data, sizeof(data), 1000);
+
+}*/
