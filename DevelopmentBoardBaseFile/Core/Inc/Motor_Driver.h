@@ -8,6 +8,7 @@
 #ifndef INC_MOTOR_DRIVER_H_
 #define INC_MOTOR_DRIVER_H_
 
+void MotordriverIni(void);
 
 
 #endif /* INC_MOTOR_DRIVER_H_ */
