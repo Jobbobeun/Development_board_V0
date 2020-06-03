@@ -97,7 +97,8 @@ void MX_GPIO_Init(void)
 
 /* USER CODE BEGIN 2 */
 
-bool IoWrite(uint8_t Output_Pin, bool Output_State){
+bool IoWrite(uint8_t Output_Pin, bool Output_State)
+{
 
 	switch(Output_Pin){
 
@@ -210,9 +211,10 @@ bool IoWrite(uint8_t Output_Pin, bool Output_State){
 
 		}
 
-	}
+}
 
-	bool IoRead(uint8_t Input_Pin){
+bool IoRead(uint8_t Input_Pin)
+{
 
 		switch(Input_Pin){
 		case 1:
@@ -244,9 +246,10 @@ bool IoWrite(uint8_t Output_Pin, bool Output_State){
 			return false;
 
 			}
-		}
+}
 
-bool IoToggle(uint8_t Toggle_Pin){
+bool IoToggle(uint8_t Toggle_Pin)
+{
 
 	if(Toggle_Pin <= Outpin_Quantity){
 
@@ -265,7 +268,7 @@ bool IoToggle(uint8_t Toggle_Pin){
 		{
 			return false;
 			}
-		}
+}
 
 
 bool GPIO_Status(uint8_t Output_pin){
@@ -274,7 +277,7 @@ return Out_status[Output_pin - 1];
 
 }
 
-void gpio_test(void){
+void GPIO_test(void){
 	TEST1 = 		IoToggle(OUT_1);
 					IoToggle(OUT_2);
 					IoToggle(OUT_3);
