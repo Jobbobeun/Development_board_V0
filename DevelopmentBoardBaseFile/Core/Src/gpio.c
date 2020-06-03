@@ -20,6 +20,7 @@
 /* Includes ------------------------------------------------------------------*/
 #include "gpio.h"
 /* USER CODE BEGIN 0 */
+
 uint8_t Out_status[7];
 #define Outpin_Quantity 7
 bool TEST1;
@@ -215,24 +216,28 @@ bool IoWrite(uint8_t Output_Pin, bool Output_State){
 
 		switch(Input_Pin){
 		case 1:
-			HAL_GPIO_ReadPin(GPIOB, IN_1_Pin);
-			return true;
+
+			return HAL_GPIO_ReadPin(GPIOB, IN_1_Pin);
 			break;
+
 		case 2:
-			HAL_GPIO_ReadPin(GPIOB, IN_2_Pin);
-			return true;
+
+			return HAL_GPIO_ReadPin(GPIOB, IN_2_Pin);
 			break;
+
 		case 3:
-			HAL_GPIO_ReadPin(GPIOB, IN_3_Pin);
-			return true;
+
+			return HAL_GPIO_ReadPin(GPIOB, IN_3_Pin);
 			break;
+
 		case 4:
-			HAL_GPIO_ReadPin(GPIOC, IN_4_Pin);
-			return true;
+
+			return HAL_GPIO_ReadPin(GPIOC, IN_4_Pin);
 			break;
+
 		case 5:
-			HAL_GPIO_ReadPin(GPIOB, IN_5_Pin);
-			return true;
+
+			return HAL_GPIO_ReadPin(GPIOB, IN_5_Pin);
 			break;
 
 		default:
