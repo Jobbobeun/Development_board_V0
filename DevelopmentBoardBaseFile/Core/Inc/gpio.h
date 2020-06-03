@@ -42,6 +42,15 @@
 	 OUT_6,
 	 OUT_7
  };
+
+ enum Input_numbers{
+	 EMPTY,
+	 IN_1,
+	 IN_2,
+	 IN_3,
+	 IN_4,
+	 IN_5
+ };
 /* USER CODE END Private defines */
 
 void MX_GPIO_Init(void);
