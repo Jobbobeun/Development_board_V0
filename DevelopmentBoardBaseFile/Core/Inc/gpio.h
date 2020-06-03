@@ -28,16 +28,31 @@
 #include "main.h"
 
 /* USER CODE BEGIN Includes */
-
+#include "stdbool.h"
 /* USER CODE END Includes */
 
 /* USER CODE BEGIN Private defines */
-
+ enum Output_numbers {
+	 EMPTY,
+	 OUT_1,
+	 OUT_2,
+	 OUT_3,
+	 OUT_4,
+	 OUT_5,
+	 OUT_6,
+	 OUT_7
+ };
 /* USER CODE END Private defines */
 
 void MX_GPIO_Init(void);
 
 /* USER CODE BEGIN Prototypes */
+
+bool IoWrite(uint8_t Output_pin, bool Output_State);
+bool IoRead(uint8_t Input_pin);
+bool IoToggle(uint8_t Toggle_pin);
+bool OutStatus(uint8_t Output_pin);
+void GPIO_test(void);
 
 /* USER CODE END Prototypes */
 

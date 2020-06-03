@@ -12,8 +12,6 @@
 #include "pwm.h"
 #include "lcd.h"
 
-
-
 void application(void){
 
 	lcdPrint("Hello world",0,0);
@@ -30,7 +28,6 @@ for (int i = 0 ; i <10 ; i++){
 	PWM_Duty_Cycle(PWM_4, 100);
 	PWM_Duty_Cycle(PWM_5, 100);
 	PWM_Duty_Cycle(PWM_6, 100);
-	HAL_GPIO_TogglePin(GPIOB, OUT_1_Pin);
 	HAL_GPIO_TogglePin(GPIOB, OUT_2_Pin);
 	HAL_GPIO_TogglePin(GPIOB, OUT_3_Pin);
 	HAL_GPIO_TogglePin(GPIOB, OUT_4_Pin);
@@ -45,7 +42,6 @@ for (int i = 0 ; i <10 ; i++){
 	PWM_Duty_Cycle(PWM_4, 0);
 	PWM_Duty_Cycle(PWM_5, 0);
 	PWM_Duty_Cycle(PWM_6, 0);
-	HAL_GPIO_TogglePin(GPIOB, OUT_1_Pin);
 	HAL_GPIO_TogglePin(GPIOB, OUT_2_Pin);
 	HAL_GPIO_TogglePin(GPIOB, OUT_3_Pin);
 	HAL_GPIO_TogglePin(GPIOB, OUT_4_Pin);
@@ -66,7 +62,6 @@ for (int i = 0 ; i <4 ; i++){
 	PWM_Duty_Cycle(PWM_4, 100);
 	PWM_Duty_Cycle(PWM_5, 100);
 	PWM_Duty_Cycle(PWM_6, 100);
-	HAL_GPIO_TogglePin(GPIOB, OUT_1_Pin);
 	HAL_GPIO_TogglePin(GPIOB, OUT_2_Pin);
 	HAL_GPIO_TogglePin(GPIOB, OUT_3_Pin);
 	HAL_GPIO_TogglePin(GPIOB, OUT_4_Pin);
@@ -81,7 +76,6 @@ for (int i = 0 ; i <4 ; i++){
 	PWM_Duty_Cycle(PWM_4, 0);
 	PWM_Duty_Cycle(PWM_5, 0);
 	PWM_Duty_Cycle(PWM_6, 0);
-	HAL_GPIO_TogglePin(GPIOB, OUT_1_Pin);
 	HAL_GPIO_TogglePin(GPIOB, OUT_2_Pin);
 	HAL_GPIO_TogglePin(GPIOB, OUT_3_Pin);
 	HAL_GPIO_TogglePin(GPIOB, OUT_4_Pin);
@@ -94,3 +88,4 @@ for (int i = 0 ; i <4 ; i++){
 HAL_Delay(500);
 
 }
+
