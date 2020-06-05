@@ -13,7 +13,7 @@
 #include "stdlib.h"
 #include "string.h"
 
-char data1[10];
+//char data1[10];
 
 
 //------------------------
@@ -29,32 +29,22 @@ void serialcom_init(void)
 //------------------------
 /* SENDING FUNCTIONS */
 //------------------------
-void serialcom_SendChar(char data[], uint8_t delay)
+void serialcom_SendString(char data[], uint16_t delay)
 {
 	HAL_UART_Transmit(&huart2, (uint8_t*)data, strlen(data), 1000);
 	HAL_Delay(delay);
 }
 
-
 //------------------------
 /* RECEIVING FUNCTIONS */
 //------------------------
 
-int serialcom_ReceiveChar()
+uint8_t* serialcom_ReceiveChar(void)
 {
 
-	HAL_UART_Receive(&huart2, (uint8_t*)data1, strlen(data1), 1000);
-	//HAL_Delay(delay1);
-	return data1[10];
+	HAL_UART_Receive(&huart2, data1, sizeof(data1), 1000);
+
+	return data1;
 }
 
 
-
-/*while(1)
-{
-
-	HAL_UART_Receive(&huart2, (uint8_t*)data1, sizeof(data1), 1000);
-	//HAL_Delay(5000);
-	HAL_UART_Transmit(&huart2, (uint8_t*)data, sizeof(data), 1000);
-
-}*/

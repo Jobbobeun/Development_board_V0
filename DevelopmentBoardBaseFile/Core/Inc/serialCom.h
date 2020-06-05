@@ -15,6 +15,8 @@
 #ifndef INC_SERIALCOM_H_
 #define INC_SERIALCOM_H_
 
+uint8_t data1[10];
+
 //-------------------------------------------------------------------
 // This function is to initialize the serial communication over UART
 // The baudrate is set to 115200
@@ -24,15 +26,25 @@
 void serialcom_init(void);
 
 //---------------------------------------------------------------------------
-// This function sends 1 character over UART
+// This function sends 1 string over UART
 // For correct usage you have to fill in two variables
-// char data[] => here you fill in the character that has to be send
+// char data[] => here you fill in the amount of characters that has to be send
 // uint8_t delay => here you fill in the delay of between the send characters
+
+// There is also an option to send a string.
+// You have to make a bigger data[] array
 //----------------------------------------------------------------------------
-void serialcom_SendChar(char data[], uint8_t delay);
+void serialcom_SendString(char data[], uint16_t delay);
 
+//----------------------------------------------
+// this function can receive only one character over UART
+// example for usage of this function:
 
-int serialcom_ReceiveChar();
+//uint8_t *buff;
+//buff = serialcom_ReceiveChar();
+//serialcom_SendString(buff, 1000);
+//----------------------------------------------
+uint8_t* serialcom_ReceiveChar();
 
 
 #endif /* INC_SERIALCOM_H_ */
