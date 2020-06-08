@@ -5,15 +5,11 @@
  *      Author: wojtek
  */
 
-//uint8_t serial;
-
 #include "serialCom.h"
 #include "stdint.h"
 #include "stdio.h"
 #include "stdlib.h"
 #include "string.h"
-
-//char data1[10];
 
 
 //------------------------
@@ -29,10 +25,9 @@ void serialcom_init(void)
 //------------------------
 /* SENDING FUNCTIONS */
 //------------------------
-void serialcom_SendString(char data[], uint16_t delay)
+void serialcom_SendString(char data[])
 {
 	HAL_UART_Transmit(&huart2, (uint8_t*)data, strlen(data), 1000);
-	HAL_Delay(delay);
 }
 
 //------------------------

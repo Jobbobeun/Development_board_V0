@@ -29,12 +29,11 @@ void serialcom_init(void);
 // This function sends 1 string over UART
 // For correct usage you have to fill in two variables
 // char data[] => here you fill in the amount of characters that has to be send
-// uint8_t delay => here you fill in the delay of between the send characters
 
 // There is also an option to send a string.
 // You have to make a bigger data[] array
 //----------------------------------------------------------------------------
-void serialcom_SendString(char data[], uint16_t delay);
+void serialcom_SendString(char data[]);
 
 //----------------------------------------------
 // this function can receive only one character over UART
