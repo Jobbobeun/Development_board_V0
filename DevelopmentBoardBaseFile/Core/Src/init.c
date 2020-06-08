@@ -9,11 +9,14 @@
 #include "pwm.h"
 #include "lcd.h"
 #include "tim.h"
+#include "serialCom.h"
+
 
 void DevBoardInit(void){
 
 	ADC_init();
 	lcd_init();
 	Indicator_init();
+	serialcom_init();
 
 }
