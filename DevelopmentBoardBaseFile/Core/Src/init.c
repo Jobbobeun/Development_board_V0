@@ -11,6 +11,7 @@
 #include "tim.h"
 #include "serialCom.h"
 #include "LowPowerControl.h"
+#include "gpio.h"
 
 void DevBoardInit(void){
 
@@ -18,5 +19,5 @@ void DevBoardInit(void){
 	lcd_init();
 	Indicator_init();
 	serialcom_init();
-	SleepLowPowerMode_init();
+
 }

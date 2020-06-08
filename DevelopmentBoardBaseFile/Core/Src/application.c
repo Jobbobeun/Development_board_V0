@@ -13,7 +13,6 @@
 #include "lcd.h"
 #include "serialCom.h"
 
-bool Status_IN;
 
 void application(void){
 
