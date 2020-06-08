@@ -10,7 +10,8 @@
 #include "lcd.h"
 #include "tim.h"
 #include "serialCom.h"
-
+#include "LowPowerControl.h"
+#include "gpio.h"
 
 void DevBoardInit(void){
 
