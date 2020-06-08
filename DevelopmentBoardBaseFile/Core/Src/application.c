@@ -13,8 +13,9 @@
 #include "lcd.h"
 #include "serialCom.h"
 
-void application(void){
+bool Status_IN;
 
+void application(void){
 
 }
 
