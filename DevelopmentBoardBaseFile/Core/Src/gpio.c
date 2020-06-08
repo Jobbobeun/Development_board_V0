@@ -118,7 +118,7 @@ bool IoWrite(uint8_t Output_Pin, bool Output_State)
 
 	switch(Output_Pin){
 
-	case 1:
+	case OUT_1:
 
 		if (Output_State != Out_status[Output_Pin - 1])
 		{
@@ -133,7 +133,7 @@ bool IoWrite(uint8_t Output_Pin, bool Output_State)
 		}
 		break;
 
-	case 2:
+	case OUT_2:
 
 		if (Output_State != Out_status[Output_Pin - 1])
 		{
@@ -148,7 +148,7 @@ bool IoWrite(uint8_t Output_Pin, bool Output_State)
 		}
 		break;
 
-	case 3:
+	case OUT_3:
 
 		if (Output_State != Out_status[Output_Pin - 1])
 		{
@@ -163,7 +163,7 @@ bool IoWrite(uint8_t Output_Pin, bool Output_State)
 		}
 		break;
 
-	case 4:
+	case OUT_4:
 
 		if (Output_State != Out_status[Output_Pin - 1])
 		{
@@ -178,7 +178,7 @@ bool IoWrite(uint8_t Output_Pin, bool Output_State)
 		}
 		break;
 
-	case 5:
+	case OUT_5:
 
 		if (Output_State != Out_status[Output_Pin - 1])
 		{
@@ -194,7 +194,7 @@ bool IoWrite(uint8_t Output_Pin, bool Output_State)
 
 		break;
 
-	case 6:
+	case OUT_6:
 		if (Output_State != Out_status[Output_Pin - 1])
 		{
 			HAL_GPIO_WritePin(GPIOB, OUT_6_Pin, Output_State);
@@ -208,7 +208,7 @@ bool IoWrite(uint8_t Output_Pin, bool Output_State)
 		}
 		break;
 
-	case 7:
+	case OUT_7:
 		if (Output_State != Out_status[Output_Pin - 1])
 		{
 			HAL_GPIO_WritePin(GPIOA, OUT_7_Pin, Output_State);
@@ -233,27 +233,27 @@ bool IoRead(uint8_t Input_Pin)
 {
 
 		switch(Input_Pin){
-		case 1:
+		case IN_1:
 
 			return HAL_GPIO_ReadPin(GPIOB, IN_1_Pin);
 			break;
 
-		case 2:
+		case IN_2:
 
 			return HAL_GPIO_ReadPin(GPIOB, IN_2_Pin);
 			break;
 
-		case 3:
+		case IN_3:
 
 			return HAL_GPIO_ReadPin(GPIOB, IN_3_Pin);
 			break;
 
-		case 4:
+		case IN_4:
 
 			return HAL_GPIO_ReadPin(GPIOC, IN_4_Pin);
 			break;
 
-		case 5:
+		case IN_5:
 
 			return HAL_GPIO_ReadPin(GPIOB, IN_5_Pin);
 			break;
