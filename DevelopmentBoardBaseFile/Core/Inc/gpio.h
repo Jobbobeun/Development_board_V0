@@ -33,7 +33,7 @@
 
 /* USER CODE BEGIN Private defines */
  enum Output_numbers {
-	 EMPTY,
+	 EMPTY_Output,
 	 OUT_1,
 	 OUT_2,
 	 OUT_3,
@@ -41,6 +41,15 @@
 	 OUT_5,
 	 OUT_6,
 	 OUT_7
+ };
+
+ enum Input_numbers{
+	 EMPTY_Input,
+	 IN_1,
+	 IN_2,
+	 IN_3,
+	 IN_4,
+	 IN_5
  };
 /* USER CODE END Private defines */
 
