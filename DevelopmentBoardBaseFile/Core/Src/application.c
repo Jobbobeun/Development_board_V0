@@ -11,8 +11,10 @@
 #include "gpio.h"
 #include "pwm.h"
 #include "lcd.h"
+#include "serialCom.h"
 
 void application(void){
+
 
 	lcdPrint("Hello world",0,0);
 	HAL_Delay(10);
@@ -86,6 +88,8 @@ for (int i = 0 ; i <4 ; i++){
 
 }
 HAL_Delay(500);
+
+serialcom_SendString("hello world");
 
 }
 
