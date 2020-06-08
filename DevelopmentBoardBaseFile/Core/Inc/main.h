@@ -60,6 +60,7 @@ void Error_Handler(void);
 /* Private defines -----------------------------------------------------------*/
 #define IN_4_Pin GPIO_PIN_13
 #define IN_4_GPIO_Port GPIOC
+#define IN_4_EXTI_IRQn EXTI15_10_IRQn
 #define ADC_1_Pin GPIO_PIN_0
 #define ADC_1_GPIO_Port GPIOA
 #define ADC_7_Pin GPIO_PIN_1
@@ -76,6 +77,7 @@ void Error_Handler(void);
 #define ADC_2_GPIO_Port GPIOB
 #define IN_3_Pin GPIO_PIN_1
 #define IN_3_GPIO_Port GPIOB
+#define IN_3_EXTI_IRQn EXTI1_IRQn
 #define IN_5_Pin GPIO_PIN_2
 #define IN_5_GPIO_Port GPIOB
 #define OUT_4_Pin GPIO_PIN_12
@@ -106,10 +108,12 @@ void Error_Handler(void);
 #define OUT_5_GPIO_Port GPIOB
 #define IN_1_Pin GPIO_PIN_8
 #define IN_1_GPIO_Port GPIOB
+#define IN_1_EXTI_IRQn EXTI9_5_IRQn
 #define IN_2_Pin GPIO_PIN_9
 #define IN_2_GPIO_Port GPIOB
+#define IN_2_EXTI_IRQn EXTI9_5_IRQn
 /* USER CODE BEGIN Private defines */
-
+void SystemClock_Config(void);
 /* USER CODE END Private defines */
 
 #ifdef __cplusplus

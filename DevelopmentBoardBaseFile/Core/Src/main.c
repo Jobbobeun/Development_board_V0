@@ -34,7 +34,6 @@
 
 /* USER CODE END Includes */
 
-
 /* Private typedef -----------------------------------------------------------*/
 /* USER CODE BEGIN PTD */
 
@@ -101,6 +100,8 @@ int main(void)
   MX_TIM1_Init();
   MX_TIM2_Init();
   MX_USART2_UART_Init();
+  MX_TIM3_Init();
+  MX_TIM4_Init();
   /* USER CODE BEGIN 2 */
   DevBoardInit();
   /* USER CODE END 2 */
@@ -110,8 +111,9 @@ int main(void)
   while (1)
   {
     /* USER CODE END WHILE */
-application();
+
     /* USER CODE BEGIN 3 */
+	  application();
   }
   /* USER CODE END 3 */
 }
