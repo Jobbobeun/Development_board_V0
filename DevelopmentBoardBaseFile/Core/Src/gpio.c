@@ -21,6 +21,7 @@
 #include "gpio.h"
 #include "i2c.h"
 /* USER CODE BEGIN 0 */
+HAL_StatusTypeDef ret2;
 uint8_t receiveddata[2] = {0xE0,0x00}; //P4 as output
 /* USER CODE END 0 */
 
@@ -212,23 +213,27 @@ void GPIO_test(void){
 
 void PCF8574_Demo_Write(void){
 
-	uint8_t buf[2];
-	buf[0] = 0x00; // At first to set all the IO's as outputs (0) next loops to turn off all outputs
-	buf[1] = 0x30; // To turn on P4 and P5
+	//uint8_t buf[2];
+	//buf[0] = 0x00; // At first to set all the IO's as outputs (0) next loops to turn off all outputs
+	//buf[1] = 0x30; // To turn on P4 and P5
 
 	uint8_t data[1];
-	data[0] = 0x00; // To turn off all outputs
+	data[0] = 0xEF; // To turn off all outputs
 
-	HAL_Delay(2000);
+	//HAL_Delay(2000);
 	// This code toggles output P4 and P5 at 2 Hz
 	// First byte after power on defines the IO's as input(1) or as output(0)
 	// Seconde byte = pin P4 and P5 HIGH --> binary P7 P6 P5 P4 P3 P2 P1 P0 = 0 0 1 1 0 0 0 0 = 0x30
 	// Write address of the PCF is 0x40, two bytes are sent)
-	HAL_I2C_Master_Transmit(&hi2c1, 0x40, (uint8_t*) buf, 2, 1000);
-	HAL_Delay(2000);
+	//ret2 = HAL_I2C_Master_Transmit(&hi2c1, 0x40, (uint8_t*) buf, 2, 1000);
+	//HAL_Delay(2000);
 
 	// One byte is sent (data[0])
-	HAL_I2C_Master_Transmit(&hi2c1, 0x40, (uint8_t*) data, 1, 1000);
+	ret2 = HAL_I2C_Master_Transmit(&hi2c1, 0x40, (uint8_t*) data, 1, 1000);
+	data[0] = 0xDF;
+
+	HAL_Delay(2000);
+	ret2 = HAL_I2C_Master_Transmit(&hi2c1, 0x40, (uint8_t*) data, 1, 1000);
 }
 
 //Het ontvangen lijkt te werken. receiveddata2[2] = {0xE0,0x00} dit wordt overschreven door de ontvangen waarde?
@@ -241,7 +246,7 @@ void PCF8574_Demo_Receive(void){
 
 void PCF_Init(){
 	HAL_Delay(3000);
-	uint8_t initdata[] = {0xEF}; //Set only P4 as output, rest as input.
+	uint8_t initdata[] = {0x30}; //Set P4 and P5 as output, rest as input.
 
 	HAL_I2C_Master_Transmit(&hi2c1, 0x40, (uint8_t*) initdata, 1, 1000);
 }

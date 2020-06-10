@@ -20,7 +20,7 @@ HAL_StatusTypeDef ret;
 
 void application(void){
 
-HAL_Delay(3000);
+HAL_Delay(2000);
 PCF8574_Demo_Write();
 
 	//PCF8574_Demo_Receive();
