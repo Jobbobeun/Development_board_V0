@@ -32,7 +32,8 @@
 /* USER CODE END Includes */
 
 /* USER CODE BEGIN Private defines */
-
+ uint8_t receiveddata[2]; //1 Byte to store received data
+ uint8_t receiveddata2[2];
 /* USER CODE END Private defines */
 
 void MX_GPIO_Init(void);
@@ -43,7 +44,9 @@ bool IoRead(uint8_t Input_pin);
 bool IoToggle(uint8_t Toggle_pin);
 
 void GPIO_test(void);
-void PCF8574_Demo(void);
+void PCF8574_Demo_Write(void);
+void PCF8574_Demo_Receive(void);
+void PCF_Init(void);
 /* USER CODE END Prototypes */
 
 #ifdef __cplusplus
