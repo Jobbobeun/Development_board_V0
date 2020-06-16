@@ -201,7 +201,7 @@ void ADC_init(void)
 	HAL_ADC_Start_DMA(&hadc1, (uint32_t*)adcValue, 7);
 }
 
-uint32_t AdcRead(uint8_t PinNumber)
+uint16_t AdcRead(uint8_t PinNumber)
 {
 
 return adcValue[PinNumber -1];
