@@ -19,10 +19,10 @@
 
 /* Includes ------------------------------------------------------------------*/
 #include "adc.h"
-#include "main.h"
-#include "stm32f1xx_hal.h"
 
 /* USER CODE BEGIN 0 */
+#include "main.h"
+#include "stm32f1xx_hal.h"
 uint16_t adcValue[7];
 /* USER CODE END 0 */
 
