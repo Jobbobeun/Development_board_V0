@@ -34,13 +34,19 @@
 /* USER CODE BEGIN Private defines */
  enum Output_numbers {
 	 EMPTY_Output,
-	 OUT_1,
-	 OUT_2,
-	 OUT_3,
-	 OUT_4,
-	 OUT_5,
-	 OUT_6,
-	 OUT_7
+	 OUT_1,	// PWM STM32
+	 OUT_2, // PWM STM32
+	 OUT_3, // PWM STM32
+	 OUT_4, // PWM STM32
+	 OUT_5,	// GPIO STM32
+	 OUT_6, // GPIO STM32
+	 OUT_7, // GPIO STM32
+	 OUT_8, // GPIO STM32
+	 OUT_9,	// IO expander P0
+	 OUT_10, // IO expander P1
+	 OUT_11, // IO expander P2
+	 OUT_12, // IO expander P3
+	 PROG_LED
  };
 
  enum Input_numbers{
@@ -49,7 +55,11 @@
 	 IN_2,
 	 IN_3,
 	 IN_4,
-	 IN_5
+	 IN_5,
+	 IN_6,
+	 IN_7,
+	 IN_8,
+	 IN_9
  };
 /* USER CODE END Private defines */
 
