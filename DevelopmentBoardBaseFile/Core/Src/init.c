@@ -21,5 +21,4 @@ void DevBoardInit(void){
 	Indicator_init();
 	serialcom_init();
 	MotordriverIni();
-
 }

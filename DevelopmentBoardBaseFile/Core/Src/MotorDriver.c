@@ -10,13 +10,20 @@
 #include "pwm.h"
 #include "stdint.h"
 
-#define MotorDriver_IO
 
+uint8_t MotorDriverActualDirection[3];
+
+void ControlMotor_CW(uint8_t MotorOutputNumber);
+void ControlMotor_CCW(uint8_t MotorOutputNumber);
+void ControlMotor_Brake(uint8_t MotorOutputNumber);
 
 void MotordriverIni(void)
 {
 	StartPWM_1(); // Enable A
 	StartPWM_2(); // Enable B
+
+	MotorDriverActualDirection[Motor1] = 255;
+	MotorDriverActualDirection[Motor2] = 255;
 }
 
 bool Motor(uint8_t MotorOutputNumber, uint8_t Direction, uint8_t Speed)
@@ -24,17 +31,27 @@ bool Motor(uint8_t MotorOutputNumber, uint8_t Direction, uint8_t Speed)
 	switch(MotorOutputNumber){
 
 		case Motor1:
+		case Motor2:
 
-			if (Direction == CW){
+			if ((Direction == CW) && (MotorDriverActualDirection[MotorOutputNumber] != Direction))
+			{
+				ControlMotor_CW(MotorOutputNumber);
+				PWM_Duty_Cycle(MotorOutputNumber +1, Speed);
+				MotorDriverActualDirection[MotorOutputNumber] = Direction;
 
-				PWM_Duty_Cycle(PWM_1, Speed);
 			}
 
+			else if ((Direction == CCW) && (MotorDriverActualDirection[MotorOutputNumber] != Direction))
+			{
+				ControlMotor_CCW(MotorOutputNumber);
+				PWM_Duty_Cycle(MotorOutputNumber +1, Speed);
+				MotorDriverActualDirection[MotorOutputNumber] = Direction;
+			}
 
-
-		break;
-
-		case Motor2:
+			else if ((Direction == BRAKE)  && (MotorDriverActualDirection[MotorOutputNumber] != Direction))
+			{
+				ControlMotor_Brake(MotorOutputNumber);
+			}
 
 		break;
 
@@ -51,3 +68,55 @@ bool Motor(uint8_t MotorOutputNumber, uint8_t Direction, uint8_t Speed)
 	return false;
 }
 
+void ControlMotor_CW(uint8_t MotorOutputNumber)
+{
+	switch(MotorOutputNumber){
+
+	case Motor1:
+		IoWrite(OUT_3, true);				// OUT NEEDS TO BE CHANGED!!!
+		IoWrite(OUT_4, false);				// OUT NEEDS TO BE CHANGED!!!
+		break;
+
+	case Motor2:
+		IoWrite(OUT_5, true);				// OUT NEEDS TO BE CHANGED!!!
+		IoWrite(OUT_6, false);				// OUT NEEDS TO BE CHANGED!!!
+		break;
+	}
+
+}
+
+void ControlMotor_CCW(uint8_t MotorOutputNumber)
+{
+	switch(MotorOutputNumber){
+
+	case Motor1:
+		IoWrite(OUT_3, false);				// OUT NEEDS TO BE CHANGED!!!
+		IoWrite(OUT_4, true);				// OUT NEEDS TO BE CHANGED!!!
+		break;
+
+	case Motor2:
+		IoWrite(OUT_5, false);				// OUT NEEDS TO BE CHANGED!!!
+		IoWrite(OUT_6, true);				// OUT NEEDS TO BE CHANGED!!!
+		break;
+	}
+
+}
+
+void ControlMotor_Brake(uint8_t MotorOutputNumber)
+{
+	switch(MotorOutputNumber){
+
+	case Motor1:
+		IoWrite(OUT_3, true);				// OUT NEEDS TO BE CHANGED!!!
+		IoWrite(OUT_4, true);				// OUT NEEDS TO BE CHANGED!!!
+		PWM_Duty_Cycle(PWM_1, 100);
+		break;
+
+	case Motor2:
+		IoWrite(OUT_5, true);				// OUT NEEDS TO BE CHANGED!!!
+		IoWrite(OUT_6, true);				// OUT NEEDS TO BE CHANGED!!!
+		PWM_Duty_Cycle(PWM_2, 100);
+		break;
+	}
+
+}
