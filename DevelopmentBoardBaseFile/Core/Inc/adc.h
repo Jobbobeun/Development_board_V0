@@ -40,7 +40,7 @@ void MX_ADC1_Init(void);
 
 /* USER CODE BEGIN Prototypes */
 void ADC_init(void);
-uint32_t AdcRead(uint8_t PinNumber);
+uint16_t AdcRead(uint8_t PinNumber);
 /* USER CODE END Prototypes */
 
 #ifdef __cplusplus
