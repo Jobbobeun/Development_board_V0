@@ -222,6 +222,42 @@ bool IoWrite(uint8_t Output_Pin, bool Output_State)
 		}
 		break;
 
+	case OUT_8:
+
+		return false;
+
+				break;
+
+	case OUT_9:
+
+		return false;
+
+				break;
+
+	case OUT_10:
+
+		return false;
+
+				break;
+
+	case OUT_11:
+
+		return false;
+
+				break;
+
+	case OUT_12:
+
+		return false;
+
+				break;
+
+	case PROG_LED:
+
+		return false;
+
+				break;
+
 	default:
 		return false;
 
@@ -256,6 +292,26 @@ bool IoRead(uint8_t Input_Pin)
 		case IN_5:
 
 			return HAL_GPIO_ReadPin(GPIOB, IN_5_Pin);
+			break;
+
+		case IN_6:
+
+			return false;
+			break;
+
+		case IN_7:
+
+			return false;
+			break;
+
+		case IN_8:
+
+			return false;
+			break;
+
+		case IN_9:
+
+			return false;
 			break;
 
 		default:
