@@ -198,7 +198,7 @@ void HAL_ADC_MspDeInit(ADC_HandleTypeDef* adcHandle)
 /* USER CODE BEGIN 1 */
 void ADC_init(void)
 {
-	HAL_ADC_Start_DMA(&hadc1, (uint32_t*)adcValue, 2);
+	HAL_ADC_Start_DMA(&hadc1, (uint32_t*)adcValue, 7);
 }
 
 uint32_t AdcRead(uint8_t PinNumber)
