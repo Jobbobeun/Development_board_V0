@@ -10,7 +10,7 @@
 
 #include "main.h"
 
-enum PWM {PWM_1, PWM_2, PWM_3, PWM_4, PWM_5, PWM_6};
+enum PWM {EMPTY, PWM_1, PWM_2, PWM_3, PWM_4, PWM_5, PWM_6};
 
 void StartPWM_1(void);
 void StartPWM_2(void);

@@ -7,13 +7,15 @@
 
 #include "MotorDriver.h"
 #include "gpio.h"
+#include "stdbool.h"
 #include "pwm.h"
 #include "stdint.h"
 
 
 uint8_t MotorDriverActualDirection[3];
+uint8_t MotorDriverActualSpeed[3];
 
-void ControlMotor_CW(uint8_t MotorOutputNumber);
+bool ControlMotor_CW(uint8_t MotorOutputNumber);
 void ControlMotor_CCW(uint8_t MotorOutputNumber);
 void ControlMotor_Brake(uint8_t MotorOutputNumber);
 
@@ -33,19 +35,21 @@ bool Motor(uint8_t MotorOutputNumber, uint8_t Direction, uint8_t Speed)
 		case Motor1:
 		case Motor2:
 
-			if ((Direction == CW) && (MotorDriverActualDirection[MotorOutputNumber] != Direction))
+			if ((Direction == CW) && ((MotorDriverActualDirection[MotorOutputNumber] != Direction) || (MotorDriverActualSpeed[MotorOutputNumber] =! Speed)))
 			{
 				ControlMotor_CW(MotorOutputNumber);
 				PWM_Duty_Cycle(MotorOutputNumber +1, Speed);
 				MotorDriverActualDirection[MotorOutputNumber] = Direction;
+				MotorDriverActualSpeed[MotorOutputNumber] = Speed;
 
 			}
 
-			else if ((Direction == CCW) && (MotorDriverActualDirection[MotorOutputNumber] != Direction))
+			else if ((Direction == CCW) && ((MotorDriverActualDirection[MotorOutputNumber] != Direction) || (MotorDriverActualSpeed[MotorOutputNumber] =! Speed)))
 			{
 				ControlMotor_CCW(MotorOutputNumber);
 				PWM_Duty_Cycle(MotorOutputNumber +1, Speed);
 				MotorDriverActualDirection[MotorOutputNumber] = Direction;
+				MotorDriverActualSpeed[MotorOutputNumber] = Speed;
 			}
 
 			else if ((Direction == BRAKE)  && (MotorDriverActualDirection[MotorOutputNumber] != Direction))
@@ -68,19 +72,23 @@ bool Motor(uint8_t MotorOutputNumber, uint8_t Direction, uint8_t Speed)
 	return false;
 }
 
-void ControlMotor_CW(uint8_t MotorOutputNumber)
+bool ControlMotor_CW(uint8_t MotorOutputNumber)
 {
 	switch(MotorOutputNumber){
 
 	case Motor1:
 		IoWrite(OUT_3, true);				// OUT NEEDS TO BE CHANGED!!!
 		IoWrite(OUT_4, false);				// OUT NEEDS TO BE CHANGED!!!
+		return true;
 		break;
 
 	case Motor2:
 		IoWrite(OUT_5, true);				// OUT NEEDS TO BE CHANGED!!!
 		IoWrite(OUT_6, false);				// OUT NEEDS TO BE CHANGED!!!
+		return true;
 		break;
+	default:
+		return false;
 	}
 
 }

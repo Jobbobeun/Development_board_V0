@@ -21,4 +21,9 @@ void DevBoardInit(void){
 	Indicator_init();
 	serialcom_init();
 	MotordriverIni();
+	Motor(Motor1, CW, 100);
+	Motor(Motor2, CW, 100);
+	HAL_Delay(1000);
+	Motor(Motor1, CCW, 100);
+	Motor(Motor2, CCW, 100);
 }
