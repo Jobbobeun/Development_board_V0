@@ -12,6 +12,7 @@
 #include "serialCom.h"
 #include "LowPowerControl.h"
 #include "gpio.h"
+#include "MotorDriver.h"
 
 void DevBoardInit(void){
 
@@ -19,5 +20,6 @@ void DevBoardInit(void){
 	lcd_init();
 	Indicator_init();
 	serialcom_init();
+	MotordriverIni();
 
 }
