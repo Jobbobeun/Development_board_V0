@@ -20,7 +20,10 @@
 /* Includes ------------------------------------------------------------------*/
 #include "gpio.h"
 /* USER CODE BEGIN 0 */
-uint8_t GPIO_status[7];
+
+uint8_t Out_status[7];
+#define Outpin_Quantity 7
+bool TEST1;
 
 /* USER CODE END 0 */
 
@@ -58,13 +61,13 @@ void MX_GPIO_Init(void)
 
   /*Configure GPIO pin : PtPin */
   GPIO_InitStruct.Pin = IN_4_Pin;
-  GPIO_InitStruct.Mode = GPIO_MODE_INPUT;
+  GPIO_InitStruct.Mode = GPIO_MODE_IT_RISING;
   GPIO_InitStruct.Pull = GPIO_NOPULL;
   HAL_GPIO_Init(IN_4_GPIO_Port, &GPIO_InitStruct);
 
-  /*Configure GPIO pins : PBPin PBPin PBPin */
-  GPIO_InitStruct.Pin = IN_3_Pin|IN_1_Pin|IN_2_Pin;
-  GPIO_InitStruct.Mode = GPIO_MODE_INPUT;
+  /*Configure GPIO pins : PBPin PBPin */
+  GPIO_InitStruct.Pin = IN_3_Pin|IN_2_Pin;
+  GPIO_InitStruct.Mode = GPIO_MODE_IT_RISING;
   GPIO_InitStruct.Pull = GPIO_NOPULL;
   HAL_GPIO_Init(GPIOB, &GPIO_InitStruct);
 
@@ -90,20 +93,37 @@ void MX_GPIO_Init(void)
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
   HAL_GPIO_Init(OUT_7_GPIO_Port, &GPIO_InitStruct);
 
+  /*Configure GPIO pin : PtPin */
+  GPIO_InitStruct.Pin = IN_1_Pin;
+  GPIO_InitStruct.Mode = GPIO_MODE_IT_FALLING;
+  GPIO_InitStruct.Pull = GPIO_NOPULL;
+  HAL_GPIO_Init(IN_1_GPIO_Port, &GPIO_InitStruct);
+
+  /* EXTI interrupt init*/
+  HAL_NVIC_SetPriority(EXTI1_IRQn, 0, 0);
+  HAL_NVIC_EnableIRQ(EXTI1_IRQn);
+
+  HAL_NVIC_SetPriority(EXTI9_5_IRQn, 0, 0);
+  HAL_NVIC_EnableIRQ(EXTI9_5_IRQn);
+
+  HAL_NVIC_SetPriority(EXTI15_10_IRQn, 0, 0);
+  HAL_NVIC_EnableIRQ(EXTI15_10_IRQn);
+
 }
 
 /* USER CODE BEGIN 2 */
 
-bool IoWrite(uint8_t Output_Pin, bool Output_State){
+bool IoWrite(uint8_t Output_Pin, bool Output_State)
+{
 
 	switch(Output_Pin){
 
-	case 1:
+	case OUT_1:
 
-		if (Output_State != GPIO_status[Output_Pin - 1])
+		if (Output_State != Out_status[Output_Pin - 1])
 		{
 			HAL_GPIO_WritePin(GPIOB, OUT_1_Pin, Output_State);
-			GPIO_status[Output_Pin - 1] = Output_State;
+			Out_status[Output_Pin - 1] = Output_State;
 
 			return true;
 		}
@@ -113,12 +133,12 @@ bool IoWrite(uint8_t Output_Pin, bool Output_State){
 		}
 		break;
 
-	case 2:
+	case OUT_2:
 
-		if (Output_State != GPIO_status[Output_Pin - 1])
+		if (Output_State != Out_status[Output_Pin - 1])
 		{
 			HAL_GPIO_WritePin(GPIOB, OUT_2_Pin, Output_State);
-			GPIO_status[Output_Pin - 1] = Output_State;
+			Out_status[Output_Pin - 1] = Output_State;
 
 			return true;
 		}
@@ -128,12 +148,12 @@ bool IoWrite(uint8_t Output_Pin, bool Output_State){
 		}
 		break;
 
-	case 3:
+	case OUT_3:
 
-		if (Output_State != GPIO_status[Output_Pin - 1])
+		if (Output_State != Out_status[Output_Pin - 1])
 		{
 			HAL_GPIO_WritePin(GPIOB, OUT_3_Pin, Output_State);
-			GPIO_status[Output_Pin - 1] = Output_State;
+			Out_status[Output_Pin - 1] = Output_State;
 
 			return true;
 		}
@@ -143,12 +163,12 @@ bool IoWrite(uint8_t Output_Pin, bool Output_State){
 		}
 		break;
 
-	case 4:
+	case OUT_4:
 
-		if (Output_State != GPIO_status[Output_Pin - 1])
+		if (Output_State != Out_status[Output_Pin - 1])
 		{
 			HAL_GPIO_WritePin(GPIOB, OUT_4_Pin, Output_State);
-			GPIO_status[Output_Pin - 1] = Output_State;
+			Out_status[Output_Pin - 1] = Output_State;
 
 			return true;
 		}
@@ -158,12 +178,12 @@ bool IoWrite(uint8_t Output_Pin, bool Output_State){
 		}
 		break;
 
-	case 5:
+	case OUT_5:
 
-		if (Output_State != GPIO_status[Output_Pin - 1])
+		if (Output_State != Out_status[Output_Pin - 1])
 		{
 			HAL_GPIO_WritePin(GPIOB, OUT_5_Pin, Output_State);
-			GPIO_status[Output_Pin - 1] = Output_State;
+			Out_status[Output_Pin - 1] = Output_State;
 
 		return true;
 		}
@@ -174,11 +194,11 @@ bool IoWrite(uint8_t Output_Pin, bool Output_State){
 
 		break;
 
-	case 6:
-		if (Output_State != GPIO_status[Output_Pin - 1])
+	case OUT_6:
+		if (Output_State != Out_status[Output_Pin - 1])
 		{
 			HAL_GPIO_WritePin(GPIOB, OUT_6_Pin, Output_State);
-			GPIO_status[Output_Pin - 1] = Output_State;
+			Out_status[Output_Pin - 1] = Output_State;
 
 		return true;
 		}
@@ -188,11 +208,11 @@ bool IoWrite(uint8_t Output_Pin, bool Output_State){
 		}
 		break;
 
-	case 7:
-		if (Output_State != GPIO_status[Output_Pin - 1])
+	case OUT_7:
+		if (Output_State != Out_status[Output_Pin - 1])
 		{
 			HAL_GPIO_WritePin(GPIOA, OUT_7_Pin, Output_State);
-			GPIO_status[Output_Pin - 1] = Output_State;
+			Out_status[Output_Pin - 1] = Output_State;
 
 		return true;
 		}
@@ -207,84 +227,83 @@ bool IoWrite(uint8_t Output_Pin, bool Output_State){
 
 		}
 
-	}
+}
 
-	bool IoRead(uint8_t Input_Pin){
+bool IoRead(uint8_t Input_Pin)
+{
 
 		switch(Input_Pin){
-		case 1:
-			HAL_GPIO_ReadPin(GPIOB, IN_1_Pin);
-			return true;
+		case IN_1:
+
+			return HAL_GPIO_ReadPin(GPIOB, IN_1_Pin);
 			break;
-		case 2:
-			HAL_GPIO_ReadPin(GPIOB, IN_2_Pin);
-			return true;
+
+		case IN_2:
+
+			return HAL_GPIO_ReadPin(GPIOB, IN_2_Pin);
 			break;
-		case 3:
-			HAL_GPIO_ReadPin(GPIOB, IN_3_Pin);
-			return true;
+
+		case IN_3:
+
+			return HAL_GPIO_ReadPin(GPIOB, IN_3_Pin);
 			break;
-		case 4:
-			HAL_GPIO_ReadPin(GPIOC, IN_4_Pin);
-			return true;
+
+		case IN_4:
+
+			return HAL_GPIO_ReadPin(GPIOC, IN_4_Pin);
 			break;
-		case 5:
-			HAL_GPIO_ReadPin(GPIOB, IN_5_Pin);
-			return true;
+
+		case IN_5:
+
+			return HAL_GPIO_ReadPin(GPIOB, IN_5_Pin);
 			break;
 
 		default:
 			return false;
 
 			}
-		}
+}
 
-bool IoToggle(uint8_t Toggle_Pin){
+bool IoToggle(uint8_t Toggle_Pin)
+{
 
-	switch(Toggle_Pin){
-		case 1:
+	if(Toggle_Pin <= Outpin_Quantity){
 
-			HAL_GPIO_TogglePin(GPIOB, OUT_1_Pin);
+		if (Out_status[Toggle_Pin - 1] == 1)
+		{
+			IoWrite(Toggle_Pin, 0);
 			return true;
-			break;
-		case 2:
-			HAL_GPIO_TogglePin(GPIOB, OUT_2_Pin);
-			return true;
-			break;
-		case 3:
-			HAL_GPIO_TogglePin(GPIOB, OUT_3_Pin);
-			return true;
-			break;
-		case 4:
-			HAL_GPIO_TogglePin(GPIOB, OUT_4_Pin);
-			return true;
-			break;
-		case 5:
-			HAL_GPIO_TogglePin(GPIOB, OUT_5_Pin);
-			return true;
-			break;
-		case 6:
-			HAL_GPIO_TogglePin(GPIOB, OUT_6_Pin);
-			return true;
-			break;
-		case 7:
-			HAL_GPIO_TogglePin(GPIOC, OUT_7_Pin);
-			return true;
-			break;
-
-		default:
-			return false;
-
 			}
-
+		else
+		{
+			IoWrite(Toggle_Pin, 1);
+			return true;
+			}
 		}
+		else
+		{
+			return false;
+			}
+}
 
 
-bool OutStatus(uint8_t Output_pin){
+bool GPIO_Status(uint8_t Output_pin){
 
-return GPIO_status[Output_pin - 1];
+return Out_status[Output_pin - 1];
 
 }
+
+void GPIO_test(void){
+	TEST1 = 		IoToggle(OUT_1);
+					IoToggle(OUT_2);
+					IoToggle(OUT_3);
+					IoToggle(OUT_4);
+					IoToggle(OUT_5);
+					IoToggle(OUT_6);
+					IoToggle(OUT_7);
+					HAL_Delay(1000);
+}
+
 
 /* USER CODE END 2 */
 
