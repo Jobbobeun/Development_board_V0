@@ -32,6 +32,7 @@
 /* USER CODE BEGIN Includes */
 #include "init.h"
 #include "application.h"
+#include "MotorDriver.h"
 
 /* USER CODE END Includes */
 
@@ -103,10 +104,10 @@ int main(void)
   MX_USART2_UART_Init();
   MX_TIM3_Init();
   MX_TIM4_Init();
-  MX_IWDG_Init();
+ //MX_IWDG_Init();
   /* USER CODE BEGIN 2 */
   DevBoardInit();
-  WatchDogHandler();
+ //WatchDogHandler();
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -117,7 +118,7 @@ int main(void)
 
     /* USER CODE BEGIN 3 */
 	  application();
-	  HelloWatchDog();
+	//HelloWatchDog();
 	  StepperController(StepperState(1));	// Running stepper controller 1
   }
   /* USER CODE END 3 */

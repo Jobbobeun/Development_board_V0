@@ -17,8 +17,9 @@ uint8_t MotorDriverActualSpeed[3];
 uint8_t StepperStateVariable[2];
 
 bool ControlMotor_CW(uint8_t MotorOutputNumber);
-void ControlMotor_CCW(uint8_t MotorOutputNumber);
-void ControlMotor_Brake(uint8_t MotorOutputNumber);
+bool ControlMotor_CCW(uint8_t MotorOutputNumber);
+bool ControlMotor_Brake(uint8_t MotorOutputNumber);
+bool ControlMotor_Stop(uint8_t MotorOutputNumber);
 
 void MotordriverIni(void)
 {
@@ -31,46 +32,56 @@ void MotordriverIni(void)
 
 bool Motor(uint8_t MotorOutputNumber, uint8_t Direction, uint8_t Speed)
 {
-	switch(MotorOutputNumber){
 
-		case Motor1:
-		case Motor2:
-
-			if ((Direction == CW) && ((MotorDriverActualDirection[MotorOutputNumber] != Direction) || (MotorDriverActualSpeed[MotorOutputNumber] =! Speed)))
-			{
-				ControlMotor_CW(MotorOutputNumber);
-				PWM_Duty_Cycle(MotorOutputNumber +1, Speed);
-				MotorDriverActualDirection[MotorOutputNumber] = Direction;
-				MotorDriverActualSpeed[MotorOutputNumber] = Speed;
-
-			}
-
-			else if ((Direction == CCW) && ((MotorDriverActualDirection[MotorOutputNumber] != Direction) || (MotorDriverActualSpeed[MotorOutputNumber] =! Speed)))
-			{
-				ControlMotor_CCW(MotorOutputNumber);
-				PWM_Duty_Cycle(MotorOutputNumber +1, Speed);
-				MotorDriverActualDirection[MotorOutputNumber] = Direction;
-				MotorDriverActualSpeed[MotorOutputNumber] = Speed;
-			}
-
-			else if ((Direction == BRAKE)  && (MotorDriverActualDirection[MotorOutputNumber] != Direction))
-			{
-				ControlMotor_Brake(MotorOutputNumber);
-			}
-
-		break;
-
-		case Stepper:
-
-		break;
-
-		default:
-
+	if ((Direction == CW) && ((MotorDriverActualDirection[MotorOutputNumber] != Direction) || (MotorDriverActualSpeed[MotorOutputNumber] =! Speed)))
+	{
+		if (ControlMotor_CW(MotorOutputNumber)){
+			PWM_Duty_Cycle(MotorOutputNumber +1, Speed);
+			MotorDriverActualDirection[MotorOutputNumber] = Direction;
+			MotorDriverActualSpeed[MotorOutputNumber] = Speed;
+			return true;
+		} else {
 			return false;
-
+		}
 	}
 
-	return false;
+	else if ((Direction == CCW) && ((MotorDriverActualDirection[MotorOutputNumber] != Direction) || (MotorDriverActualSpeed[MotorOutputNumber] =! Speed)))
+	{
+		if (ControlMotor_CCW(MotorOutputNumber)){
+			PWM_Duty_Cycle(MotorOutputNumber +1, Speed);
+			MotorDriverActualDirection[MotorOutputNumber] = Direction;
+			MotorDriverActualSpeed[MotorOutputNumber] = Speed;
+			return true;
+		} else {
+			return false;
+		}
+	}
+
+	else if ((Direction == BRAKE)  && (MotorDriverActualDirection[MotorOutputNumber] != Direction))
+	{
+		if (ControlMotor_Brake(MotorOutputNumber)){
+			MotorDriverActualDirection[MotorOutputNumber] = Direction;
+			return true;
+		} else {
+			return false;
+		}
+	}
+
+	else if ((Direction == STOP)  && (MotorDriverActualDirection[MotorOutputNumber] != Direction))
+	{
+		if (ControlMotor_Stop(MotorOutputNumber)){
+			MotorDriverActualDirection[MotorOutputNumber] = Direction;
+			return true;
+		} else {
+			return false;
+		}
+	}
+	else
+	{
+		return false;
+	}
+
+
 }
 
 bool ControlMotor_CW(uint8_t MotorOutputNumber)
@@ -88,6 +99,12 @@ bool ControlMotor_CW(uint8_t MotorOutputNumber)
 		IoWrite(OUT_6, false);				// OUT NEEDS TO BE CHANGED!!!
 		return true;
 		break;
+
+	case Stepper:
+		StepperStateVariable[0] = Stepper_CW;
+		return true;
+		break;
+
 	default:
 		MotorErrorHandler();
 		return false;
@@ -95,27 +112,35 @@ bool ControlMotor_CW(uint8_t MotorOutputNumber)
 
 }
 
-void ControlMotor_CCW(uint8_t MotorOutputNumber)
+bool ControlMotor_CCW(uint8_t MotorOutputNumber)
 {
 	switch(MotorOutputNumber){
 
 	case Motor1:
 		IoWrite(OUT_3, false);				// OUT NEEDS TO BE CHANGED!!!
 		IoWrite(OUT_4, true);				// OUT NEEDS TO BE CHANGED!!!
+		return true;
 		break;
 
 	case Motor2:
 		IoWrite(OUT_5, false);				// OUT NEEDS TO BE CHANGED!!!
 		IoWrite(OUT_6, true);				// OUT NEEDS TO BE CHANGED!!!
+		return true;
+		break;
+
+	case Stepper:
+		StepperStateVariable[0] = Stepper_CCW;
+		return true;
 		break;
 
 	default:
 		MotorErrorHandler();
+		return false;
 	}
 
 }
 
-void ControlMotor_Brake(uint8_t MotorOutputNumber)
+bool ControlMotor_Brake(uint8_t MotorOutputNumber)
 {
 	switch(MotorOutputNumber){
 
@@ -123,18 +148,57 @@ void ControlMotor_Brake(uint8_t MotorOutputNumber)
 		IoWrite(OUT_3, true);				// OUT NEEDS TO BE CHANGED!!!
 		IoWrite(OUT_4, true);				// OUT NEEDS TO BE CHANGED!!!
 		PWM_Duty_Cycle(PWM_1, 100);
+		return true;
 		break;
 
 	case Motor2:
 		IoWrite(OUT_5, true);				// OUT NEEDS TO BE CHANGED!!!
 		IoWrite(OUT_6, true);				// OUT NEEDS TO BE CHANGED!!!
 		PWM_Duty_Cycle(PWM_2, 100);
+		return true;
+		break;
+
+	case Stepper:
+		StepperStateVariable[0] = Stepper_Brake;
+		return true;
 		break;
 
 	default:
 		MotorErrorHandler();
+		return false;
 	}
 
+
+}
+
+bool ControlMotor_Stop(uint8_t MotorOutputNumber)
+{
+
+	switch(MotorOutputNumber){
+
+	case Motor1:
+		IoWrite(OUT_3, false);				// OUT NEEDS TO BE CHANGED!!!
+		IoWrite(OUT_4, false);				// OUT NEEDS TO BE CHANGED!!!
+		PWM_Duty_Cycle(PWM_1, 100);
+		return true;
+		break;
+
+	case Motor2:
+		IoWrite(OUT_5, false);				// OUT NEEDS TO BE CHANGED!!!
+		IoWrite(OUT_6, false);				// OUT NEEDS TO BE CHANGED!!!
+		PWM_Duty_Cycle(PWM_2, 100);
+		return true;
+		break;
+
+	case Stepper:
+		StepperStateVariable[0] = Stepper_Stop;
+		return true;
+		break;
+
+	default:
+		MotorErrorHandler();
+		return false;
+	}
 
 }
 
@@ -170,5 +234,5 @@ uint8_t StepperState (uint8_t StepperNumber)
 
 // Set all Motor variables back to default.
 void MotorErrorHandler(void){
-
+	StepperStateVariable[0] = Stepper_Idle;
 }
