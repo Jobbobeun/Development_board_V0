@@ -118,6 +118,7 @@ int main(void)
     /* USER CODE BEGIN 3 */
 	  application();
 	  HelloWatchDog();
+	  StepperController(StepperState(1));	// Running stepper controller 1
   }
   /* USER CODE END 3 */
 }
