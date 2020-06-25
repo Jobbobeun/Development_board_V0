@@ -2,7 +2,7 @@
  * Motor_Driver.c
  *
  *  Created on: 27 mei 2020
- *      Author: Rob
+ *      Author: Job Heijlighen
  */
 
 #include "MotorDriver.h"
@@ -17,6 +17,9 @@ uint8_t MotorDriverActualSpeed[3];
 uint8_t StepperStateVariable[2];
 uint8_t MotorOutputStatus[4];
 uint8_t MotorStart[2];
+uint8_t MotorProfileState[3];
+uint8_t MotorProfileSpeed[3];
+uint8_t MotorProfileSettlingTime[3];
 
 bool ControlMotor_CW(uint8_t MotorOutputNumber);
 bool ControlMotor_CCW(uint8_t MotorOutputNumber);
@@ -36,6 +39,16 @@ void MotordriverIni(void)
 	MotorOutputStatus[3] = 0;
 	MotorStart[Motor1] = false;
 	MotorStart[Motor2] = false;
+	MotorProfileState[Motor1] = Motor_Idle;
+	MotorProfileState[Motor2] = Motor_Idle;
+	MotorProfileState[Stepper] = Motor_Idle;
+	MotorProfileSpeed[Motor1] = 0;
+	MotorProfileSpeed[Motor2] = 0;
+	MotorProfileSpeed[Stepper] = 0;
+	MotorProfileSettlingTime[Motor1] = 0;
+	MotorProfileSettlingTime[Motor2] = 0;
+	MotorProfileSettlingTime[Stepper] = 0;
+
 }
 
 bool Motor(uint8_t MotorOutputNumber, uint8_t Direction, uint8_t Speed)
@@ -49,7 +62,7 @@ bool Motor(uint8_t MotorOutputNumber, uint8_t Direction, uint8_t Speed)
 			MotorDriverActualSpeed[MotorOutputNumber] = Speed;
 			return true;
 		} else {
-			MotorErrorHandler();
+			MotorErrorHandler(MotorOutputNumber);
 			return false;
 		}
 	}
@@ -62,7 +75,7 @@ bool Motor(uint8_t MotorOutputNumber, uint8_t Direction, uint8_t Speed)
 			MotorDriverActualSpeed[MotorOutputNumber] = Speed;
 			return true;
 		} else {
-			MotorErrorHandler();
+			MotorErrorHandler(MotorOutputNumber);
 			return false;
 		}
 	}
@@ -73,7 +86,7 @@ bool Motor(uint8_t MotorOutputNumber, uint8_t Direction, uint8_t Speed)
 			MotorDriverActualDirection[MotorOutputNumber] = Direction;
 			return true;
 		} else {
-			MotorErrorHandler();
+			MotorErrorHandler(MotorOutputNumber);
 			return false;
 		}
 	}
@@ -84,7 +97,7 @@ bool Motor(uint8_t MotorOutputNumber, uint8_t Direction, uint8_t Speed)
 			MotorDriverActualDirection[MotorOutputNumber] = Direction;
 			return true;
 		} else {
-			MotorErrorHandler();
+			MotorErrorHandler(MotorOutputNumber);
 			return false;
 		}
 	}
@@ -179,7 +192,7 @@ bool ControlMotor_CW(uint8_t MotorOutputNumber)
 		break;
 
 	default:
-		MotorErrorHandler();
+		MotorErrorHandler(MotorOutputNumber);
 		return false;
 	}
 
@@ -268,7 +281,7 @@ bool ControlMotor_CCW(uint8_t MotorOutputNumber)
 		break;
 
 	default:
-		MotorErrorHandler();
+		MotorErrorHandler(MotorOutputNumber);
 		return false;
 	}
 
@@ -351,7 +364,7 @@ bool ControlMotor_Brake(uint8_t MotorOutputNumber)
 		break;
 
 	default:
-		MotorErrorHandler();
+		MotorErrorHandler(MotorOutputNumber);
 		return false;
 	}
 
@@ -433,7 +446,7 @@ bool ControlMotor_Stop(uint8_t MotorOutputNumber)
 		break;
 
 	default:
-		MotorErrorHandler();
+		MotorErrorHandler(MotorOutputNumber);
 		return false;
 	}
 
@@ -458,7 +471,7 @@ void StepperController(uint8_t StepperNumber)
 		break;
 
 	default:
-		MotorErrorHandler();
+		MotorErrorHandler(Stepper);
 	}
 
 }
@@ -470,9 +483,63 @@ uint8_t StepperState (uint8_t StepperNumber)
 
 
 // Set all Motor variables back to default.
-void MotorErrorHandler(void){
-	ControlMotor_Stop(Motor1);
-	ControlMotor_Stop(Motor2);
-	StepperStateVariable[0] = Stepper_Idle;
-	MotordriverIni();
+void MotorErrorHandler(uint8_t MotorOutputNumber){
+
+	switch(MotorOutputNumber){
+	case Motor1:
+		ControlMotor_Stop(Motor1);
+		MotorOutputStatus[0] = 0;
+		MotorOutputStatus[1] = 0;
+		MotorStart[Motor1] = false;
+		break;
+
+	case Motor2:
+		ControlMotor_Stop(Motor2);
+		MotorOutputStatus[2] = 0;
+		MotorOutputStatus[3] = 0;
+		MotorStart[Motor2] = false;
+		break;
+
+	case Stepper:
+		StepperStateVariable[0] = Stepper_Idle;
+		break;
+
+	default:
+		MotordriverIni();
+	}
+
 }
+
+bool MotorProfile(uint8_t MotorOutputNumber, uint8_t Direction, uint8_t Speed, uint8_t SettlingTime)
+{
+	switch(MotorProfileState[MotorOutputNumber]){
+
+	case Motor_Idle:
+
+		return true;
+
+		break;
+
+	case Motor_Acceleration:
+
+		return true;
+
+		break;
+
+	case Motor_Constant:
+
+		return true;
+
+		break;
+
+	case Motor_Slow:
+
+		return true;
+
+		break;
+
+	default:
+		return false;
+	}
+}
+
