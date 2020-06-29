@@ -34,10 +34,10 @@
 /* USER CODE BEGIN Private defines */
  enum Output_numbers {
 	 EMPTY_Output,
-	 OUT_1,	// PWM STM32
-	 OUT_2, // PWM STM32
-	 OUT_3, // PWM STM32
-	 OUT_4, // PWM STM32
+	 OUT_1,
+	 OUT_2,
+	 OUT_3,
+	 OUT_4,
 	 OUT_5,	// GPIO STM32
 	 OUT_6, // GPIO STM32
 	 OUT_7, // GPIO STM32

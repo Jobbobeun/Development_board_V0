@@ -23,7 +23,7 @@
 /* USER CODE BEGIN 0 */
 #include "main.h"
 #include "stm32f1xx_hal.h"
-uint16_t adcValue[7];
+uint16_t adcValue[5];
 /* USER CODE END 0 */
 
 ADC_HandleTypeDef hadc1;
@@ -155,11 +155,11 @@ void HAL_ADC_MspDeInit(ADC_HandleTypeDef* adcHandle)
     __HAL_RCC_ADC1_CLK_DISABLE();
   
     /**ADC1 GPIO Configuration    
-    PA4     ------> ADC1_IN4
-    PA5     ------> ADC1_IN5
-    PA6     ------> ADC1_IN6
-    PA7     ------> ADC1_IN7
-    PB0     ------> ADC1_IN8 
+    PA4     ------> ADC1_IN4 //ADC_5
+    PA5     ------> ADC1_IN5 //ADC_4
+    PA6     ------> ADC1_IN6 //ADC_3
+    PA7     ------> ADC1_IN7 //ADC_2
+    PB0     ------> ADC1_IN8 //ADC_1
     */
     HAL_GPIO_DeInit(GPIOA, ADC_5_Pin|ADC_4_Pin|ADC_3_Pin|ADC_2_Pin);
 
@@ -176,7 +176,7 @@ void HAL_ADC_MspDeInit(ADC_HandleTypeDef* adcHandle)
 /* USER CODE BEGIN 1 */
 void ADC_init(void)
 {
-	HAL_ADC_Start_DMA(&hadc1, (uint32_t*)adcValue, 7);
+	HAL_ADC_Start_DMA(&hadc1, (uint32_t*)adcValue, 5);
 }
 
 uint16_t AdcRead(uint8_t PinNumber)

@@ -10,14 +10,14 @@
 
 #include "main.h"
 
-enum PWM {PWM_1, PWM_2, PWM_3, PWM_4, PWM_5, PWM_6};
+enum PWM {ENABLE_A, ENABLE_B, PWM_1, PWM_2, PWM_3, PWM_4};
 
+void StartENABLE_A(void);
+void StartENABLE_B(void);
 void StartPWM_1(void);
 void StartPWM_2(void);
 void StartPWM_3(void);
 void StartPWM_4(void);
-void StartPWM_5(void);
-void StartPWM_6(void);
 void StartPWM_All(void);
 
 void PWM_Duty_Cycle(uint8_t PWM_Channel, uint16_t Duty_Cycle);

@@ -19,10 +19,11 @@
 
 /* Includes ------------------------------------------------------------------*/
 #include "gpio.h"
+#include "pwm.h"
 /* USER CODE BEGIN 0 */
 
-uint8_t Out_status[7];
-#define Outpin_Quantity 7
+uint8_t Out_status[12];
+#define Outpin_Quantity 12
 bool TEST1;
 
 /* USER CODE END 0 */
@@ -118,70 +119,69 @@ bool IoWrite(uint8_t Output_Pin, bool Output_State)
 	switch(Output_Pin){
 
 	case OUT_1:
-
 		if (Output_State != Out_status[Output_Pin - 1])
 		{
-			HAL_GPIO_WritePin(GPIOB, OUT_1_Pin, Output_State);
+			PWM_Duty_Cycle(PWM_1, 100);
 			Out_status[Output_Pin - 1] = Output_State;
 
-			return true;
+		return true;
 		}
 		else
 		{
+			PWM_Duty_Cycle(PWM_1, 0);
 			return false;
 		}
-		break;
+					break;
 
 	case OUT_2:
-
 		if (Output_State != Out_status[Output_Pin - 1])
 		{
-			HAL_GPIO_WritePin(GPIOB, OUT_2_Pin, Output_State);
+			PWM_Duty_Cycle(PWM_2, 100);
 			Out_status[Output_Pin - 1] = Output_State;
 
-			return true;
+		return true;
 		}
 		else
 		{
+			PWM_Duty_Cycle(PWM_2, 0);
 			return false;
 		}
-		break;
+					break;
 
 	case OUT_3:
-
 		if (Output_State != Out_status[Output_Pin - 1])
 		{
-			HAL_GPIO_WritePin(GPIOB, OUT_3_Pin, Output_State);
+			PWM_Duty_Cycle(PWM_3, 100);
 			Out_status[Output_Pin - 1] = Output_State;
 
-			return true;
+		return true;
 		}
 		else
 		{
+			PWM_Duty_Cycle(PWM_3, 0);
 			return false;
 		}
-		break;
-
+					break;
 	case OUT_4:
 
 		if (Output_State != Out_status[Output_Pin - 1])
 		{
-			HAL_GPIO_WritePin(GPIOB, OUT_4_Pin, Output_State);
+			PWM_Duty_Cycle(PWM_4, 100);
 			Out_status[Output_Pin - 1] = Output_State;
 
-			return true;
+		return true;
 		}
 		else
 		{
+			PWM_Duty_Cycle(PWM_4, 0);
 			return false;
 		}
-		break;
-
+					break;
 	case OUT_5:
 
 		if (Output_State != Out_status[Output_Pin - 1])
 		{
-			HAL_GPIO_WritePin(GPIOB, OUT_5_Pin, Output_State);
+			HAL_GPIO_WritePin(GPIOA, OUT_5_Pin, Output_State);
 			Out_status[Output_Pin - 1] = Output_State;
 
 		return true;
@@ -196,7 +196,7 @@ bool IoWrite(uint8_t Output_Pin, bool Output_State)
 	case OUT_6:
 		if (Output_State != Out_status[Output_Pin - 1])
 		{
-			HAL_GPIO_WritePin(GPIOB, OUT_6_Pin, Output_State);
+			HAL_GPIO_WritePin(GPIOA, OUT_6_Pin, Output_State);
 			Out_status[Output_Pin - 1] = Output_State;
 
 		return true;
@@ -210,7 +210,7 @@ bool IoWrite(uint8_t Output_Pin, bool Output_State)
 	case OUT_7:
 		if (Output_State != Out_status[Output_Pin - 1])
 		{
-			HAL_GPIO_WritePin(GPIOA, OUT_7_Pin, Output_State);
+			HAL_GPIO_WritePin(GPIOB, OUT_7_Pin, Output_State);
 			Out_status[Output_Pin - 1] = Output_State;
 
 		return true;
@@ -222,10 +222,18 @@ bool IoWrite(uint8_t Output_Pin, bool Output_State)
 		break;
 
 	case OUT_8:
+		if (Output_State != Out_status[Output_Pin - 1])
+		{
+			HAL_GPIO_WritePin(GPIOB, OUT_8_Pin, Output_State);
+			Out_status[Output_Pin - 1] = Output_State;
 
-		return false;
-
-				break;
+		return true;
+		}
+		else
+		{
+			return false;
+		}
+		break;
 
 	case OUT_9:
 
@@ -261,7 +269,6 @@ bool IoWrite(uint8_t Output_Pin, bool Output_State)
 		return false;
 
 		}
-
 }
 
 bool IoRead(uint8_t Input_Pin)
@@ -275,7 +282,7 @@ bool IoRead(uint8_t Input_Pin)
 
 		case IN_2:
 
-			return HAL_GPIO_ReadPin(GPIOB, IN_2_Pin);
+			return HAL_GPIO_ReadPin(GPIOC, IN_2_Pin);
 			break;
 
 		case IN_3:
@@ -285,7 +292,7 @@ bool IoRead(uint8_t Input_Pin)
 
 		case IN_4:
 
-			return HAL_GPIO_ReadPin(GPIOC, IN_4_Pin);
+			return HAL_GPIO_ReadPin(GPIOB, IN_4_Pin);
 			break;
 
 		case IN_5:
@@ -295,22 +302,22 @@ bool IoRead(uint8_t Input_Pin)
 
 		case IN_6:
 
-			return false;
+			return HAL_GPIO_ReadPin(GPIOB, IN_6_Pin);
 			break;
 
 		case IN_7:
 
-			return false;
+			return HAL_GPIO_ReadPin(GPIOB, IN_7_Pin);
 			break;
 
 		case IN_8:
 
-			return false;
+			return HAL_GPIO_ReadPin(GPIOB, IN_8_Pin);
 			break;
 
 		case IN_9:
 
-			return false;
+			return HAL_GPIO_ReadPin(GPIOB, IN_9_Pin);
 			break;
 
 		default:
@@ -349,14 +356,7 @@ return Out_status[Output_pin - 1];
 }
 
 void GPIO_test(void){
-	TEST1 = 		IoToggle(OUT_1);
-					IoToggle(OUT_2);
-					IoToggle(OUT_3);
-					IoToggle(OUT_4);
-					IoToggle(OUT_5);
-					IoToggle(OUT_6);
-					IoToggle(OUT_7);
-					HAL_Delay(1000);
+
 }
 
 
