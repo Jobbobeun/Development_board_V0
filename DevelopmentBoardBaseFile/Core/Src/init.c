@@ -20,5 +20,5 @@ void DevBoardInit(void){
 	Indicator_init();
 	serialcom_init();
 
-	MainCase = Switch_Off;
+	MainCase = Switch_On;
 }
