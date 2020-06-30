@@ -12,13 +12,18 @@
 
 void application(void);
 enum{
-	Main_Idle,
-	Main_Wait,
-	Main_Toggle,
-	Main_Stop
+	Switch_On,
+	Switch_Off,
+	Drive_On,
+	Drive_Off,
+	LCD_On,
+	LCD_Off,
+	Lift_Up,
+	Lift_Down,
 };
 
 uint8_t MainCase;
+uint8_t Counter;
 
 
 #endif /* INC_APPLICATION_H_ */
