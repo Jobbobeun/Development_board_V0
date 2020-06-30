@@ -71,6 +71,7 @@ bool IoWrite(uint8_t Output_pin, bool Output_State);
 bool IoRead(uint8_t Input_pin);
 bool IoToggle(uint8_t Toggle_pin);
 bool OutStatus(uint8_t Output_pin);
+void GPIO_init(void);
 void GPIO_test(void);
 
 /* USER CODE END Prototypes */

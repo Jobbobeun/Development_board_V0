@@ -22,8 +22,8 @@
 #include "pwm.h"
 /* USER CODE BEGIN 0 */
 
-uint8_t Out_status[12];
-#define Outpin_Quantity 12
+uint8_t Out_status[13];
+#define Outpin_Quantity 13
 bool TEST1;
 
 /* USER CODE END 0 */
@@ -112,6 +112,15 @@ void MX_GPIO_Init(void)
 }
 
 /* USER CODE BEGIN 2 */
+void GPIO_init(void)
+{
+	StartENABLE_A();
+	StartENABLE_B();
+	StartPWM_1();
+	StartPWM_2();
+	StartPWM_3();
+	StartPWM_4();
+}
 
 bool IoWrite(uint8_t Output_Pin, bool Output_State)
 {
@@ -121,62 +130,75 @@ bool IoWrite(uint8_t Output_Pin, bool Output_State)
 	case OUT_1:
 		if (Output_State != Out_status[Output_Pin - 1])
 		{
-			PWM_Duty_Cycle(PWM_1, 100);
-			Out_status[Output_Pin - 1] = Output_State;
-
-		return true;
-		}
-		else
-		{
+			if (Output_State){
+				PWM_Duty_Cycle(PWM_1, 100);
+		} else{
 			PWM_Duty_Cycle(PWM_1, 0);
-			return false;
 		}
+		Out_status[Output_Pin - 1] = Output_State;
+
+	return true;
+	}
+	else
+	{
+		return false;
+	}
 					break;
 
 	case OUT_2:
 		if (Output_State != Out_status[Output_Pin - 1])
 		{
-			PWM_Duty_Cycle(PWM_2, 100);
-			Out_status[Output_Pin - 1] = Output_State;
-
-		return true;
-		}
-		else
-		{
+			if (Output_State){
+				PWM_Duty_Cycle(PWM_2, 100);
+		} else{
 			PWM_Duty_Cycle(PWM_2, 0);
-			return false;
 		}
+		Out_status[Output_Pin - 1] = Output_State;
+
+	return true;
+	}
+	else
+	{
+		return false;
+	}
 					break;
 
 	case OUT_3:
 		if (Output_State != Out_status[Output_Pin - 1])
 		{
-			PWM_Duty_Cycle(PWM_3, 100);
-			Out_status[Output_Pin - 1] = Output_State;
-
-		return true;
-		}
-		else
-		{
+			if (Output_State){
+				PWM_Duty_Cycle(PWM_3, 100);
+		} else{
 			PWM_Duty_Cycle(PWM_3, 0);
-			return false;
 		}
-					break;
-	case OUT_4:
+		Out_status[Output_Pin - 1] = Output_State;
 
+	return true;
+	}
+	else
+	{
+		return false;
+	}
+					break;
+
+	case OUT_4:
 		if (Output_State != Out_status[Output_Pin - 1])
 		{
-			PWM_Duty_Cycle(PWM_4, 100);
-			Out_status[Output_Pin - 1] = Output_State;
-
-		return true;
-		}
-		else
-		{
+			if (Output_State){
+				PWM_Duty_Cycle(PWM_4, 100);
+		} else{
 			PWM_Duty_Cycle(PWM_4, 0);
-			return false;
 		}
+		Out_status[Output_Pin - 1] = Output_State;
+
+	return true;
+	}
+	else
+	{
+		return false;
+	}
 					break;
+
 	case OUT_5:
 
 		if (Output_State != Out_status[Output_Pin - 1])
@@ -261,9 +283,18 @@ bool IoWrite(uint8_t Output_Pin, bool Output_State)
 
 	case PROG_LED:
 
-		return false;
+		if (Output_State != Out_status[Output_Pin - 1])
+		{
+			HAL_GPIO_WritePin(GPIOA, PROG_LED_Pin, Output_State);
+			Out_status[Output_Pin - 1] = Output_State;
 
-				break;
+		return true;
+		}
+		else
+		{
+			return false;
+		}
+		break;
 
 	default:
 		return false;

@@ -14,7 +14,7 @@
 #include "gpio.h"
 
 void DevBoardInit(void){
-
+	GPIO_init();
 	ADC_init();
 	lcd_init();
 	Indicator_init();
