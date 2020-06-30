@@ -9,5 +9,14 @@
 #define INC_APPLICATION_H_
 
 void application(void);
+enum{
+	Main_Idle,
+	Main_Wait,
+	Main_Toggle,
+	Main_Stop
+};
+
+uint8_t MainCase;
+
 
 #endif /* INC_APPLICATION_H_ */

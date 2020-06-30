@@ -16,5 +16,26 @@
 
 void application(void){
 
+	switch(MainCase){
+
+	case Main_Idle:
+
+		break;
+
+	case Main_Wait:
+
+		break;
+
+	case Main_Toggle:
+
+		break;
+
+	case Main_Stop:
+
+		break;
+
+
+	}
+
 }
 

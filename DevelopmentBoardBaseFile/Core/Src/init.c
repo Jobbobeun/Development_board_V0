@@ -20,4 +20,5 @@ void DevBoardInit(void){
 	Indicator_init();
 	serialcom_init();
 
+	MainCase = Main_Idle;
 }
