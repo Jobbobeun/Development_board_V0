@@ -18,22 +18,47 @@ void application(void){
 
 	switch(MainCase){
 
-	case Main_Idle:
+	case Switch_On:
+
+		if (IoRead(IN_1) == true){
+//Switch on
+//Set Servo installed angle
+
+			MainCase = Switch_Off;
+			Counter ++;
+		}
 
 		break;
 
-	case Main_Wait:
+	case Switch_Off:
+
+	//Reset servo angle so pusher goes back
+
 
 		break;
 
-	case Main_Toggle:
+	case Drive_On:
 
 		break;
 
-	case Main_Stop:
+	case Drive_Off:
 
 		break;
 
+	case LCD_On:
+
+		break;
+
+	case LCD_Off:
+
+		break;
+	case Lift_Up:
+
+		break;
+
+	case Lift_Down:
+
+		break;
 
 	}
 

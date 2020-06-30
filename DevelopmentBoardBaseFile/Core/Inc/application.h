@@ -7,6 +7,8 @@
 
 #ifndef INC_APPLICATION_H_
 #define INC_APPLICATION_H_
+#include "stdbool.h"
+#include "stdint.h"
 
 void application(void);
 enum{
