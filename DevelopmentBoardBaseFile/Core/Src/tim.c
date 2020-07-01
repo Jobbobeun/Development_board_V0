@@ -278,7 +278,7 @@ void HAL_TIM_MspPostInit(TIM_HandleTypeDef* timHandle)
     PA10     ------> TIM1_CH3
     PA11     ------> TIM1_CH4 
     */
-    GPIO_InitStruct.Pin = PWM_4_Pin|PWM_3_Pin|PWM_2_Pin|PWM_1_Pin;
+    GPIO_InitStruct.Pin = OUT_2_Pin|OUT_1_Pin|ENABLE_B_Pin|ENABLE_A_Pin;
     GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
     GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
     HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
@@ -299,15 +299,15 @@ void HAL_TIM_MspPostInit(TIM_HandleTypeDef* timHandle)
     PA15     ------> TIM2_CH1
     PB3     ------> TIM2_CH2 
     */
-    GPIO_InitStruct.Pin = PWM_6_Pin;
+    GPIO_InitStruct.Pin = OUT_4_Pin;
     GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
     GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
-    HAL_GPIO_Init(PWM_6_GPIO_Port, &GPIO_InitStruct);
+    HAL_GPIO_Init(OUT_4_GPIO_Port, &GPIO_InitStruct);
 
-    GPIO_InitStruct.Pin = PWM_5_Pin;
+    GPIO_InitStruct.Pin = OUT_3_Pin;
     GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
     GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
-    HAL_GPIO_Init(PWM_5_GPIO_Port, &GPIO_InitStruct);
+    HAL_GPIO_Init(OUT_3_GPIO_Port, &GPIO_InitStruct);
 
     __HAL_AFIO_REMAP_TIM2_PARTIAL_1();
 
@@ -376,8 +376,8 @@ void HAL_TIM_Base_MspDeInit(TIM_HandleTypeDef* tim_baseHandle)
 /* USER CODE BEGIN 1 */
 void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
 {
-	// Toggle indicator led on OUT_1
-	IoToggle(OUT_1);
+	// Toggle indicator led on PROG_LED
+	IoToggle(PROG_LED);
 }
 
 void Indicator_init(void)

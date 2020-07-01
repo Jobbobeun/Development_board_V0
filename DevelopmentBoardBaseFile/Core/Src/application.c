@@ -13,7 +13,6 @@
 #include "lcd.h"
 #include "serialCom.h"
 
-
 void application(void){
 
 }

@@ -16,7 +16,7 @@
 #include "stdint.h"
 bool Stepp;
 void DevBoardInit(void){
-
+	GPIO_init();
 	ADC_init();
 	lcd_init();
 	Indicator_init();

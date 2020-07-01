@@ -107,7 +107,7 @@ int main(void)
  //MX_IWDG_Init();
   /* USER CODE BEGIN 2 */
   DevBoardInit();
- //WatchDogHandler();
+  //WatchDogHandler();
   /* USER CODE END 2 */
 
   /* Infinite loop */
