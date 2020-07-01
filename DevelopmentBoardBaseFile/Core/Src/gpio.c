@@ -295,6 +295,26 @@ bool IoWrite(uint8_t Output_Pin, bool Output_State)
 		}
 		break;
 
+		case MD_A1:
+			// Io expander p7
+			return false;
+			break;
+
+		case MD_A2:
+			// Io expander p6
+			return false;
+		break;
+
+		case MD_A3:
+			// Io expander p5
+			return false;
+		break;
+
+		case MD_A4:
+			// Io expander p4
+			return false;
+		break;
+
 	default:
 		return false;
 
@@ -354,10 +374,13 @@ bool ActiveRead;
 			ActiveRead = false;
 
 			}
+
 		if (ActiveRead){
 			return false;
 		} else if (!ActiveRead) {
 			return true;
+		} else {
+			return false;
 		}
 }
 

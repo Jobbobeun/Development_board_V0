@@ -32,6 +32,7 @@
 /* USER CODE BEGIN Includes */
 #include "init.h"
 #include "application.h"
+#include "MotorDriver.h"
 
 /* USER CODE END Includes */
 
@@ -117,7 +118,8 @@ int main(void)
 
     /* USER CODE BEGIN 3 */
 	  application();
-//	  HelloWatchDog();
+	//HelloWatchDog();
+	  StepperController(StepperState(1));	// Running stepper controller 1
   }
   /* USER CODE END 3 */
 }
