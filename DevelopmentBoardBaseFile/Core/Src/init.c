@@ -22,16 +22,4 @@ void DevBoardInit(void){
 	Indicator_init();
 	serialcom_init();
 	MotordriverIni();
-	HAL_Delay(1000);
-	Stepp = Motor(Motor2, CCW, 50);
-
-	HAL_Delay(500);
-	//IoWrite(OUT_6, false);
-	HAL_Delay(500);
-
-	Stepp = Motor(Motor2, CW, 50);
-	HAL_Delay(2000);
-	Stepp = Motor(Motor2, BRAKE, 50);
-	HAL_Delay(1000);
-	Stepp = Motor(Motor2, CCW, 50);
 }
