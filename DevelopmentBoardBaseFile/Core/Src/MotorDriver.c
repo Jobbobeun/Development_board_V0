@@ -28,8 +28,6 @@ bool ControlMotor_Stop(uint8_t MotorOutputNumber);
 
 void MotordriverIni(void)
 {
-	StartPWM_1(); // Enable A
-	StartPWM_2(); // Enable B
 
 	MotorDriverActualDirection[Motor1] = 255;
 	MotorDriverActualDirection[Motor2] = 255;
@@ -118,7 +116,7 @@ bool ControlMotor_CW(uint8_t MotorOutputNumber)
 
 	case Motor1:
 		if (MotorOutputStatus[0] != 1){
-			if (IoWrite(OUT_3, true)){				// OUT NEEDS TO BE CHANGED!!!
+			if (IoWrite(MD_A1, true)){				// OUT NEEDS TO BE CHANGED!!!
 				MotorOutputStatus[0] = 1;
 				TempStatus1 = true;
 			}
@@ -131,7 +129,7 @@ bool ControlMotor_CW(uint8_t MotorOutputNumber)
 		}
 
 		if (MotorOutputStatus[1] != 0){
-			if (IoWrite(OUT_4, false)){				// OUT NEEDS TO BE CHANGED!!!
+			if (IoWrite(MD_A2, false)){				// OUT NEEDS TO BE CHANGED!!!
 				MotorOutputStatus[1] = 0;
 				TempStatus2 = true;
 
@@ -153,7 +151,7 @@ bool ControlMotor_CW(uint8_t MotorOutputNumber)
 
 	case Motor2:
 		if (MotorOutputStatus[2] != 1){
-			if (IoWrite(OUT_5, true)){				// OUT NEEDS TO BE CHANGED!!!
+			if (IoWrite(MD_A3, true)){				// OUT NEEDS TO BE CHANGED!!!
 				MotorOutputStatus[2] = 1;
 				TempStatus1 = true;
 			}
@@ -166,7 +164,7 @@ bool ControlMotor_CW(uint8_t MotorOutputNumber)
 		}
 
 		if (MotorOutputStatus[3] != 0){
-			if (IoWrite(OUT_6, false)){				// OUT NEEDS TO BE CHANGED!!!
+			if (IoWrite(MD_A4, false)){				// OUT NEEDS TO BE CHANGED!!!
 				MotorOutputStatus[3] = 0;
 				TempStatus2 = true;
 
@@ -207,7 +205,7 @@ bool ControlMotor_CCW(uint8_t MotorOutputNumber)
 
 	case Motor1:
 		if (MotorOutputStatus[0] != 0){
-			if (IoWrite(OUT_3, false)){				// OUT NEEDS TO BE CHANGED!!!
+			if (IoWrite(MD_A1, false)){				// OUT NEEDS TO BE CHANGED!!!
 				MotorOutputStatus[0] = 0;
 				TempStatus1 = true;
 			}
@@ -220,7 +218,7 @@ bool ControlMotor_CCW(uint8_t MotorOutputNumber)
 		}
 
 		if (MotorOutputStatus[1] != 1){
-			if (IoWrite(OUT_4, true)){				// OUT NEEDS TO BE CHANGED!!!
+			if (IoWrite(MD_A2, true)){				// OUT NEEDS TO BE CHANGED!!!
 				MotorOutputStatus[1] = 1;
 				TempStatus2 = true;
 
@@ -242,7 +240,7 @@ bool ControlMotor_CCW(uint8_t MotorOutputNumber)
 
 	case Motor2:
 		if (MotorOutputStatus[2] != 0){
-			if (IoWrite(OUT_5, false)){				// OUT NEEDS TO BE CHANGED!!!
+			if (IoWrite(MD_A3, false)){				// OUT NEEDS TO BE CHANGED!!!
 				MotorOutputStatus[2] = 0;
 				TempStatus1 = true;
 			}
@@ -255,7 +253,7 @@ bool ControlMotor_CCW(uint8_t MotorOutputNumber)
 		}
 
 		if (MotorOutputStatus[3] != 1){
-			if (IoWrite(OUT_6, true)){				// OUT NEEDS TO BE CHANGED!!!
+			if (IoWrite(MD_A4, true)){				// OUT NEEDS TO BE CHANGED!!!
 				MotorOutputStatus[3] = 1;
 				TempStatus2 = true;
 
@@ -298,21 +296,21 @@ bool ControlMotor_Brake(uint8_t MotorOutputNumber)
 	case Motor1:
 
 		if(MotorOutputStatus[0] != true){
-			if(IoWrite(OUT_3, true)){				// OUT NEEDS TO BE CHANGED!!!
+			if(IoWrite(MD_A1, true)){				// OUT NEEDS TO BE CHANGED!!!
 				MotorOutputStatus[0] = true;
 			} else{
 				TempError = true;
 			}
 		}
 		if(MotorOutputStatus[1] != true){
-			if(IoWrite(OUT_4, true)){				// OUT NEEDS TO BE CHANGED!!!
+			if(IoWrite(MD_A2, true)){				// OUT NEEDS TO BE CHANGED!!!
 				MotorOutputStatus[1] = true;
 			} else{
 				TempError = true;
 			}
 		}
 
-		PWM_Duty_Cycle(PWM_1, 100);
+		PWM_Duty_Cycle(ENABLE_A, 100);
 
 		if (MotorOutputStatus[0] && MotorOutputStatus[1]){
 				MotorStart[Motor1] = false;
@@ -331,20 +329,20 @@ bool ControlMotor_Brake(uint8_t MotorOutputNumber)
 	case Motor2:
 
 		if(MotorOutputStatus[2] != true){
-			if(IoWrite(OUT_5, true)){				// OUT NEEDS TO BE CHANGED!!!
+			if(IoWrite(MD_A3, true)){				// OUT NEEDS TO BE CHANGED!!!
 				MotorOutputStatus[2] = true;
 			} else{
 				TempError = true;
 			}
 		}
 		if(MotorOutputStatus[3] != true){
-			if(IoWrite(OUT_6, true)){				// OUT NEEDS TO BE CHANGED!!!
+			if(IoWrite(MD_A4, true)){				// OUT NEEDS TO BE CHANGED!!!
 				MotorOutputStatus[3] = true;
 			} else{
 				TempError = true;
 			}
 		}
-		PWM_Duty_Cycle(PWM_2, 100);
+		PWM_Duty_Cycle(ENABLE_B, 100);
 
 		if (MotorOutputStatus[2] && MotorOutputStatus[3]){
 			MotorStart[Motor2] = false;
@@ -380,21 +378,21 @@ bool ControlMotor_Stop(uint8_t MotorOutputNumber)
 	case Motor1:
 
 		if(MotorOutputStatus[0] != false){
-			if(IoWrite(OUT_3, false)){				// OUT NEEDS TO BE CHANGED!!!
+			if(IoWrite(MD_A1, false)){				// OUT NEEDS TO BE CHANGED!!!
 				MotorOutputStatus[0] = false;
 			} else{
 				TempError = true;
 			}
 		}
 		if(MotorOutputStatus[1] != false){
-			if(IoWrite(OUT_4, false)){				// OUT NEEDS TO BE CHANGED!!!
+			if(IoWrite(MD_A2, false)){				// OUT NEEDS TO BE CHANGED!!!
 				MotorOutputStatus[1] = false;
 			} else{
 				TempError = true;
 			}
 		}
 
-		PWM_Duty_Cycle(PWM_1, 0);
+		PWM_Duty_Cycle(ENABLE_A, 0);
 
 		if (!MotorOutputStatus[0] && !MotorOutputStatus[1]){
 				MotorStart[Motor1] = false;
@@ -413,20 +411,20 @@ bool ControlMotor_Stop(uint8_t MotorOutputNumber)
 	case Motor2:
 
 		if(MotorOutputStatus[2] != false){
-			if(IoWrite(OUT_5, false)){				// OUT NEEDS TO BE CHANGED!!!
+			if(IoWrite(MD_A3, false)){				// OUT NEEDS TO BE CHANGED!!!
 				MotorOutputStatus[2] = false;
 			} else{
 				TempError = true;
 			}
 		}
 		if(MotorOutputStatus[3] != false){
-			if(IoWrite(OUT_6, false)){				// OUT NEEDS TO BE CHANGED!!!
+			if(IoWrite(MD_A4, false)){				// OUT NEEDS TO BE CHANGED!!!
 				MotorOutputStatus[3] = false;
 			} else{
 				TempError = true;
 			}
 		}
-		PWM_Duty_Cycle(PWM_2, 0);
+		PWM_Duty_Cycle(ENABLE_B, 0);
 
 		if (!MotorOutputStatus[2] && !MotorOutputStatus[3]){
 			MotorStart[Motor2] = false;
