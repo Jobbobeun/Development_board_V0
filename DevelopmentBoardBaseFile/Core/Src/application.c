@@ -13,7 +13,6 @@
 #include "lcd.h"
 #include "serialCom.h"
 
-
 void application(void){
 
 	switch(MainCase){
@@ -69,4 +68,3 @@ void application(void){
 	}
 
 }
-
