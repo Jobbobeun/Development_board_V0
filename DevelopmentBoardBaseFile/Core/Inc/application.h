@@ -2,7 +2,7 @@
  * application.h
  *
  *  Created on: Apr 21, 2020
- *      Author: Jan de Brandweerman
+ *      Author: Job Heijlighen
  */
 
 #ifndef INC_APPLICATION_H_
