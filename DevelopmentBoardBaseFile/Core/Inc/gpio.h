@@ -52,7 +52,11 @@
 	 OUT_10, // IO expander P1
 	 OUT_11, // IO expander P2
 	 OUT_12, // IO expander P3
-	 PROG_LED
+	 PROG_LED,
+	 MD_A1,	// IO expander P7
+	 MD_A2, // IO expander P6
+	 MD_A3, // IO expander P5
+	 MD_A4  // IO expander p4
  };
 
  enum Input_numbers{
@@ -112,6 +116,7 @@ bool IoWrite(uint8_t Output_pin, bool Output_State);
 bool IoRead(uint8_t Input_pin);
 bool IoToggle(uint8_t Toggle_pin);
 bool OutStatus(uint8_t Output_pin);
+void GPIO_init(void);
 void GPIO_test(void);
 void PCF8574_Demo_Write(void);
 void PCF8574_Demo_Receive(void);

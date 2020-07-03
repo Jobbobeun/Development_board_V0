@@ -13,6 +13,7 @@
 #include "lcd.h"
 #include "i2c.h"
 
+
 int var;
 uint8_t errortest[2] = {0,0};
 HAL_StatusTypeDef ret;
@@ -40,4 +41,3 @@ if (errortest[0] == 0)
 */
 
 }
-

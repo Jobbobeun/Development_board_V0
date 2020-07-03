@@ -20,8 +20,12 @@
 /* Includes ------------------------------------------------------------------*/
 #include "gpio.h"
 #include "i2c.h"
-#include "pwm.h"
 /* USER CODE BEGIN 0 */
+#include "pwm.h"
+#include "stdint.h"
+
+#define Outpin_Quantity 13
+
 HAL_StatusTypeDef retTr;
 HAL_StatusTypeDef retRe;
 HAL_StatusTypeDef retRe2;
@@ -29,10 +33,8 @@ HAL_StatusTypeDef retTrInit;
 uint8_t received_values[1];
 uint8_t received_values2[1];
 
-/* USER CODE BEGIN 0 */
+uint8_t Out_status[13];
 
-uint8_t Out_status[12];
-#define Outpin_Quantity 12
 bool TEST1;
 
 /* USER CODE END 0 */
@@ -69,10 +71,10 @@ void MX_GPIO_Init(void)
   HAL_GPIO_WritePin(GPIOB, OUT_8_Pin|OUT_7_Pin, GPIO_PIN_RESET);
 
   /*Configure GPIO pin : PtPin */
-  GPIO_InitStruct.Pin = IN_2_Pin;
+  GPIO_InitStruct.Pin = IN_3_Pin;
   GPIO_InitStruct.Mode = GPIO_MODE_IT_RISING;
   GPIO_InitStruct.Pull = GPIO_NOPULL;
-  HAL_GPIO_Init(IN_2_GPIO_Port, &GPIO_InitStruct);
+  HAL_GPIO_Init(IN_3_GPIO_Port, &GPIO_InitStruct);
 
   /*Configure GPIO pins : PAPin PAPin PAPin */
   GPIO_InitStruct.Pin = OUT_5_Pin|OUT_6_Pin|PROG_LED_Pin;
@@ -83,17 +85,17 @@ void MX_GPIO_Init(void)
 
   /*Configure GPIO pins : PBPin PBPin PBPin PBPin 
                            PBPin PBPin */
-  GPIO_InitStruct.Pin = IN_3_Pin|IN_4_Pin|IN_7_Pin|IN_8_Pin 
-                          |IN_6_Pin|IN_1_Pin;
+  GPIO_InitStruct.Pin = IN_5_Pin|IN_8_Pin|IN_9_Pin|IN_7_Pin 
+                          |IN_4_Pin|IN_1_Pin;
   GPIO_InitStruct.Mode = GPIO_MODE_IT_RISING;
   GPIO_InitStruct.Pull = GPIO_NOPULL;
   HAL_GPIO_Init(GPIOB, &GPIO_InitStruct);
 
   /*Configure GPIO pin : PtPin */
-  GPIO_InitStruct.Pin = IN_9_Pin;
+  GPIO_InitStruct.Pin = IN_6_Pin;
   GPIO_InitStruct.Mode = GPIO_MODE_INPUT;
   GPIO_InitStruct.Pull = GPIO_PULLUP;
-  HAL_GPIO_Init(IN_9_GPIO_Port, &GPIO_InitStruct);
+  HAL_GPIO_Init(IN_6_GPIO_Port, &GPIO_InitStruct);
 
   /*Configure GPIO pins : PBPin PBPin */
   GPIO_InitStruct.Pin = OUT_8_Pin|OUT_7_Pin;
@@ -103,10 +105,10 @@ void MX_GPIO_Init(void)
   HAL_GPIO_Init(GPIOB, &GPIO_InitStruct);
 
   /*Configure GPIO pin : PtPin */
-  GPIO_InitStruct.Pin = IN_5_Pin;
+  GPIO_InitStruct.Pin = IN_2_Pin;
   GPIO_InitStruct.Mode = GPIO_MODE_IT_FALLING;
   GPIO_InitStruct.Pull = GPIO_NOPULL;
-  HAL_GPIO_Init(IN_5_GPIO_Port, &GPIO_InitStruct);
+  HAL_GPIO_Init(IN_2_GPIO_Port, &GPIO_InitStruct);
 
   /* EXTI interrupt init*/
   HAL_NVIC_SetPriority(EXTI1_IRQn, 0, 0);
@@ -121,6 +123,15 @@ void MX_GPIO_Init(void)
 }
 
 /* USER CODE BEGIN 2 */
+void GPIO_init(void)
+{
+	StartENABLE_A();
+	StartENABLE_B();
+	StartPWM_1();
+	StartPWM_2();
+	StartPWM_3();
+	StartPWM_4();
+}
 
 bool IoWrite(uint8_t Output_Pin, bool Output_State)
 {
@@ -130,62 +141,75 @@ bool IoWrite(uint8_t Output_Pin, bool Output_State)
 	case OUT_1:
 		if (Output_State != Out_status[Output_Pin - 1])
 		{
-			PWM_Duty_Cycle(PWM_1, 100);
-			Out_status[Output_Pin - 1] = Output_State;
-
-		return true;
-		}
-		else
-		{
+			if (Output_State){
+				PWM_Duty_Cycle(PWM_1, 100);
+		} else{
 			PWM_Duty_Cycle(PWM_1, 0);
-			return false;
 		}
+		Out_status[Output_Pin - 1] = Output_State;
+
+	return true;
+	}
+	else
+	{
+		return false;
+	}
 					break;
 
 	case OUT_2:
 		if (Output_State != Out_status[Output_Pin - 1])
 		{
-			PWM_Duty_Cycle(PWM_2, 100);
-			Out_status[Output_Pin - 1] = Output_State;
-
-		return true;
-		}
-		else
-		{
+			if (Output_State){
+				PWM_Duty_Cycle(PWM_2, 100);
+		} else{
 			PWM_Duty_Cycle(PWM_2, 0);
-			return false;
 		}
+		Out_status[Output_Pin - 1] = Output_State;
+
+	return true;
+	}
+	else
+	{
+		return false;
+	}
 					break;
 
 	case OUT_3:
 		if (Output_State != Out_status[Output_Pin - 1])
 		{
-			PWM_Duty_Cycle(PWM_3, 100);
-			Out_status[Output_Pin - 1] = Output_State;
-
-		return true;
-		}
-		else
-		{
+			if (Output_State){
+				PWM_Duty_Cycle(PWM_3, 100);
+		} else{
 			PWM_Duty_Cycle(PWM_3, 0);
-			return false;
 		}
-					break;
-	case OUT_4:
+		Out_status[Output_Pin - 1] = Output_State;
 
+	return true;
+	}
+	else
+	{
+		return false;
+	}
+					break;
+
+	case OUT_4:
 		if (Output_State != Out_status[Output_Pin - 1])
 		{
-			PWM_Duty_Cycle(PWM_4, 100);
-			Out_status[Output_Pin - 1] = Output_State;
-
-		return true;
-		}
-		else
-		{
+			if (Output_State){
+				PWM_Duty_Cycle(PWM_4, 100);
+		} else{
 			PWM_Duty_Cycle(PWM_4, 0);
-			return false;
 		}
+		Out_status[Output_Pin - 1] = Output_State;
+
+	return true;
+	}
+	else
+	{
+		return false;
+	}
 					break;
+
 	case OUT_5:
 
 		if (Output_State != Out_status[Output_Pin - 1])
@@ -270,9 +294,38 @@ bool IoWrite(uint8_t Output_Pin, bool Output_State)
 
 	case PROG_LED:
 
-		return false;
+		if (Output_State != Out_status[Output_Pin - 1])
+		{
+			HAL_GPIO_WritePin(GPIOA, PROG_LED_Pin, Output_State);
+			Out_status[Output_Pin - 1] = Output_State;
 
-				break;
+		return true;
+		}
+		else
+		{
+			return false;
+		}
+		break;
+
+		case MD_A1:
+			// Io expander p7
+			return false;
+			break;
+
+		case MD_A2:
+			// Io expander p6
+			return false;
+		break;
+
+		case MD_A3:
+			// Io expander p5
+			return false;
+		break;
+
+		case MD_A4:
+			// Io expander p4
+			return false;
+		break;
 
 	default:
 		return false;
@@ -282,57 +335,65 @@ bool IoWrite(uint8_t Output_Pin, bool Output_State)
 
 bool IoRead(uint8_t Input_Pin)
 {
-
+bool ActiveRead;
 		switch(Input_Pin){
 		case IN_1:
 
-			return HAL_GPIO_ReadPin(GPIOB, IN_1_Pin);
+			ActiveRead = HAL_GPIO_ReadPin(GPIOB, IN_1_Pin);
 			break;
 
 		case IN_2:
 
-			return HAL_GPIO_ReadPin(GPIOC, IN_2_Pin);
+			ActiveRead = HAL_GPIO_ReadPin(GPIOB, IN_2_Pin);
 			break;
 
 		case IN_3:
 
-			return HAL_GPIO_ReadPin(GPIOB, IN_3_Pin);
+			ActiveRead = HAL_GPIO_ReadPin(GPIOC, IN_3_Pin);
 			break;
 
 		case IN_4:
 
-			return HAL_GPIO_ReadPin(GPIOB, IN_4_Pin);
+			ActiveRead = HAL_GPIO_ReadPin(GPIOB, IN_4_Pin);
 			break;
 
 		case IN_5:
 
-			return HAL_GPIO_ReadPin(GPIOB, IN_5_Pin);
+			ActiveRead = HAL_GPIO_ReadPin(GPIOB, IN_5_Pin);
 			break;
 
 		case IN_6:
 
-			return HAL_GPIO_ReadPin(GPIOB, IN_6_Pin);
+			ActiveRead = HAL_GPIO_ReadPin(GPIOB, IN_6_Pin);
 			break;
 
 		case IN_7:
 
-			return HAL_GPIO_ReadPin(GPIOB, IN_7_Pin);
+			ActiveRead = HAL_GPIO_ReadPin(GPIOB, IN_7_Pin);
 			break;
 
 		case IN_8:
 
-			return HAL_GPIO_ReadPin(GPIOB, IN_8_Pin);
+			ActiveRead = HAL_GPIO_ReadPin(GPIOB, IN_8_Pin);
 			break;
 
 		case IN_9:
 
-			return HAL_GPIO_ReadPin(GPIOB, IN_9_Pin);
+			ActiveRead = HAL_GPIO_ReadPin(GPIOB, IN_9_Pin);
 			break;
 
 		default:
-			return false;
+			ActiveRead = false;
 
 			}
+
+		if (ActiveRead){
+			return false;
+		} else if (!ActiveRead) {
+			return true;
+		} else {
+			return false;
+		}
 }
 
 bool IoToggle(uint8_t Toggle_Pin)

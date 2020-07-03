@@ -48,10 +48,11 @@ void WatchDogHandler(void)
 {
 	 // HAL_IWDG_Start(&hiwdg);
 
-		if (__HAL_RCC_GET_FLAG(RCC_FLAG_IWDGRST) != RESET)
+		if (__HAL_RCC_GET_FLAG(RCC_FLAG_IWDGRST) != RESET)	// If watchdog is interrupt.
 		{
 			__HAL_RCC_CLEAR_RESET_FLAGS();
-
+			IoWrite(OUT_1, true);
+			HAL_Delay(5000);
 		}
 }
 
