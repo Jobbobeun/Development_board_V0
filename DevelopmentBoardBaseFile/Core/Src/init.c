@@ -8,6 +8,7 @@
 #include "adc.h"
 #include "pwm.h"
 #include "lcd.h"
+#include "i2c.h"
 #include "tim.h"
 #include "serialCom.h"
 #include "LowPowerControl.h"
@@ -21,5 +22,6 @@ void DevBoardInit(void){
 	lcd_init();
 	Indicator_init();
 	serialcom_init();
+	PCF_Init();
 	MotordriverIni();
 }
