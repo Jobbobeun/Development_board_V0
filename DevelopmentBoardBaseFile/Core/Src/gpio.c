@@ -269,28 +269,60 @@ bool IoWrite(uint8_t Output_Pin, bool Output_State)
 		break;
 
 	case OUT_9:
+		if (Output_State != Out_status[Output_Pin - 1])
+		{
+			IOE_Write(0, Output_State, IOE1_address);
+			Out_status[Output_Pin - 1] = Output_State;
 
-		return false;
-
-				break;
+		return true;
+		}
+		else
+		{
+			return false;
+		}
+		break;
 
 	case OUT_10:
+		if (Output_State != Out_status[Output_Pin - 1])
+		{
+			IOE_Write(1, Output_State, IOE1_address);
+			Out_status[Output_Pin - 1] = Output_State;
 
-		return false;
-
-				break;
+		return true;
+		}
+		else
+		{
+			return false;
+		}
+		break;
 
 	case OUT_11:
+		if (Output_State != Out_status[Output_Pin - 1])
+		{
+			IOE_Write(2, Output_State, IOE1_address);
+			Out_status[Output_Pin - 1] = Output_State;
 
-		return false;
-
-				break;
+		return true;
+		}
+		else
+		{
+			return false;
+		}
+		break;
 
 	case OUT_12:
+		if (Output_State != Out_status[Output_Pin - 1])
+		{
+			IOE_Write(3, Output_State, IOE1_address);
+			Out_status[Output_Pin - 1] = Output_State;
 
-		return false;
-
-				break;
+		return true;
+		}
+		else
+		{
+			return false;
+		}
+		break;
 
 	case PROG_LED:
 
@@ -308,24 +340,60 @@ bool IoWrite(uint8_t Output_Pin, bool Output_State)
 		break;
 
 		case MD_A1:
-			// Io expander p7
-			return false;
-			break;
+			if (Output_State != Out_status[Output_Pin - 1])
+					{
+						IOE_Write(7, Output_State, IOE1_address);
+						Out_status[Output_Pin - 1] = Output_State;
+
+					return true;
+					}
+					else
+					{
+						return false;
+					}
+					break;
 
 		case MD_A2:
-			// Io expander p6
-			return false;
-		break;
+			if (Output_State != Out_status[Output_Pin - 1])
+					{
+						IOE_Write(6, Output_State, IOE1_address);
+						Out_status[Output_Pin - 1] = Output_State;
+
+					return true;
+					}
+					else
+					{
+						return false;
+					}
+					break;
 
 		case MD_A3:
-			// Io expander p5
-			return false;
-		break;
+			if (Output_State != Out_status[Output_Pin - 1])
+					{
+						IOE_Write(5, Output_State, IOE1_address);
+						Out_status[Output_Pin - 1] = Output_State;
+
+					return true;
+					}
+					else
+					{
+						return false;
+					}
+					break;
 
 		case MD_A4:
-			// Io expander p4
-			return false;
-		break;
+			if (Output_State != Out_status[Output_Pin - 1])
+					{
+						IOE_Write(4, Output_State, IOE1_address);
+						Out_status[Output_Pin - 1] = Output_State;
+
+					return true;
+					}
+					else
+					{
+						return false;
+					}
+					break;
 
 	default:
 		return false;
