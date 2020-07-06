@@ -32,6 +32,12 @@
 /* USER CODE END Includes */
 
 /* USER CODE BEGIN Private defines */
+
+// uint8_t receiveddata[2]; //1 Byte to store received data
+ uint8_t receiveddata2[1];
+
+
+
  enum Output_numbers {
 	 EMPTY_Output,
 	 OUT_1,
@@ -65,6 +71,41 @@
 	 IN_8,
 	 IN_9
  };
+
+ enum IOE_pins{
+	 p0 = 0x00,
+	 p1 = 0x01,
+	 p2 = 0x02,
+	 p3 = 0x03,
+	 p4 = 0x04,
+	 p5 = 0x05,
+	 p6 = 0x06,
+	 p7 = 0x07
+ };
+
+ typedef union IOE_u //bit image
+ {
+   uint8_t All;
+   struct IOE_b
+   {
+     bool P0 : 1;
+     bool P1 : 1;
+     bool P2 : 1;
+     bool P3 : 1;
+     bool P4 : 1;
+     bool P5 : 1;
+     bool P6 : 1;
+     bool P7 : 1;
+   } __attribute__((packed)) Flag;
+ } __attribute__((packed)) IOE_t;
+
+#define IOE1_address 0x40
+#define IOE2_address 0x4F
+
+ IOE_t GPIO_bitmask;
+ IOE_t GPIO_bitmask_actual;
+ IOE_t newdata;
+
 /* USER CODE END Private defines */
 
 void MX_GPIO_Init(void);
@@ -77,6 +118,14 @@ bool IoToggle(uint8_t Toggle_pin);
 bool OutStatus(uint8_t Output_pin);
 void GPIO_init(void);
 void GPIO_test(void);
+void PCF8574_Demo_Write(void);
+void PCF8574_Demo_Receive(void);
+void PCF_Init(void);
+void IOE_Write(uint8_t pin, bool state, uint8_t IOE_address);
+uint8_t IOE_Read(void);
+uint8_t IOE2_Read(void);
+
+
 
 /* USER CODE END Prototypes */
 

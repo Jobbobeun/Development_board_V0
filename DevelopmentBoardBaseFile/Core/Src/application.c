@@ -11,10 +11,10 @@
 #include "gpio.h"
 #include "pwm.h"
 #include "lcd.h"
-#include "serialCom.h"
+#include "i2c.h"
+#include "stdint.h"
 
 void application(void){
-
 	switch(MainCase){
 
 	case Switch_On:
